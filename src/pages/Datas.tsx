@@ -8,6 +8,7 @@ interface StockData {
   l: number; // Low price
   o: number; // Open price
   pc: number; // Previous close
+  dp: number | null;
 }
 
 const Datas = () => {
@@ -17,41 +18,50 @@ const Datas = () => {
   const [singleStockData, setSingleStockData] = useState<any | null>();
   const [stockDataError, setStockDataError] = useState<string | null>(null);
 
-  const getSingleStockData = useCallback(
-    async (stockSearchInput: string) => {
-      try {
-        const API_KEY = process.env.REACT_APP_FINNHUB_API_KEY;
-        const url = `https://finnhub.io/api/v1/quote?symbol=${stockSearchInput}&token=${API_KEY}`;
-        const response = await axios.get<StockData>(url);
-
-        if (response.status === 200) {
-          setSingleStockData(response.data);
-          setStockDataError(null);
-        }
-      } catch (error: any) {
-        setStockDataError(error.response.data.error);
-        console.log(error.response.data.error);
+  const getSingleStockData = useCallback(async (stockSearchInput: string) => {
+    try {
+      const API_KEY = process.env.REACT_APP_FINNHUB_API_KEY;
+      const url = `https://finnhub.io/api/v1/quote?symbol=${stockSearchInput}&token=${API_KEY}`;
+      const response = await axios.get<StockData>(url);
+      console.log(response);
+      if (response.data.dp === null) {
+        setSingleStockData(null);
+        setStockDataError("주식이름을 다시한번 확인해봐요");
+      } else if (response.status === 200) {
+        setSingleStockData(response.data);
+        setStockDataError(null);
       }
-    },
-    [stockSearchInput]
-  );
+      console.log("받아옴");
+    } catch (error: any) {
+      setSingleStockData(null);
+      setStockDataError(
+        error.response.data.error || "데이터를 받아오는데 실패했읍니다"
+      );
+      console.log(error.response.data.error);
+    }
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      getSingleStockData(stockSearchInput);
-    }, 1000);
+      if (stockSearchInput) {
+        getSingleStockData(stockSearchInput);
+      }
+    }, 3000);
 
     return () => clearInterval(intervalId);
-  }, [stockSearchInput]);
+  }, [stockSearchInput, getSingleStockData]);
 
   return (
     <div>
       <h1>Stock Data Search</h1>
-      {/* <div>{getStockDataError}</div> */}
       <input
         type="text"
         value={stockSearchInput}
-        onChange={(e) => setStockSearchInput(e.target.value)}
+        onChange={(e) =>
+          setStockSearchInput(
+            e.target.value.replace(/[^a-zA-Z]/g, "").toUpperCase()
+          )
+        }
         placeholder="Enter stock symbol (e.g., AAPL)"
       />
       <button onClick={() => getSingleStockData(stockSearchInput)}>

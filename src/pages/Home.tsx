@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, firestore, storage } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 type ProductType = {
   이름: string;
@@ -10,6 +11,8 @@ type ProductType = {
 const Home = () => {
   const [product, setProduct] = useState<ProductType | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Firestore에서 'product' 컬렉션에서 '상품1' 문서 가져오기
@@ -48,6 +51,16 @@ const Home = () => {
       ) : (
         <p>No product found</p>
       )}
+
+      <p>
+        <button onClick={() => navigate("/register")}>register</button>
+      </p>
+      <p>
+        <button onClick={() => navigate("/login")}>login</button>
+      </p>
+      <p>
+        <button onClick={() => navigate("/datas")}>datas</button>
+      </p>
     </div>
   );
 };
