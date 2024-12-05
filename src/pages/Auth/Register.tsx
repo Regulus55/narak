@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useRegisterUser from "../hooks/Auth/useRegisterUser";
+import useRegisterUser from "../../hooks/Auth/useRegisterUser";
 
 interface registerUserInput {
   email: string;
@@ -13,20 +13,18 @@ const Register: React.FC = () => {
   const {
     mutateAsync: registerUserMutate,
     status: registerUserStatus,
-    // isLoading: registerUserLoading,
     isSuccess: registerUserSuccess,
     data: registerUserData,
     error: registerUserError,
   } = useRegisterUser();
+  const isLoading = registerUserStatus === "pending";
 
   const registerUserHandler = async (userInput: registerUserInput) => {
-    try {
-      await registerUserMutate({
-        email: userInput.email,
-        password: userInput.password,
-      });
-      alert("회원가입 성공");
-    } catch (error) {}
+    await registerUserMutate({
+      email: userInput.email,
+      password: userInput.password,
+    });
+    alert("회원가입 성공");
   };
 
   // 회원가입 에러 메세지
@@ -100,7 +98,7 @@ const Register: React.FC = () => {
               "w-full py-2 text-white bg-gray-400 font-semibold rounded"
             }
           >
-            회원가입
+            {isLoading ? "제출중..." : "회원가입"}
           </button>
         </form>
       </div>

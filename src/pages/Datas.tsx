@@ -1,5 +1,5 @@
 import axios from "axios";
-import useStockData from "../hooks/StockData";
+import useStockData from "../hooks/MockData/StockData";
 import { useCallback, useEffect, useState } from "react";
 
 interface StockData {

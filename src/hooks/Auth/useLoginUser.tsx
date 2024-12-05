@@ -1,15 +1,15 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-interface registerUserInput {
+interface loginUserInput {
   email: string;
   password: string;
 }
 
-const registerUser = async (userInput: registerUserInput): Promise<any> => {
-  const userCredential = await createUserWithEmailAndPassword(
+const loginUser = async (userInput: loginUserInput): Promise<any> => {
+  const userCredential = await signInWithEmailAndPassword(
     auth,
     userInput.email,
     userInput.password
@@ -17,21 +17,21 @@ const registerUser = async (userInput: registerUserInput): Promise<any> => {
   return userCredential.user;
 };
 
-const useRegisterUser = () => {
+const useLoginUser = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation<unknown, unknown, registerUserInput>({
-    mutationFn: (userInput) => registerUser(userInput),
+  return useMutation<unknown, unknown, loginUserInput>({
+    mutationFn: (userInput) => loginUser(userInput),
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
-      // navigate("/login");
-      console.log("회원가입데이터", data);
+      navigate("/profile");
+      console.log("로그인데이터", data);
     },
     // onError: (error) => {},
   });
 };
 
-export default useRegisterUser;
+export default useLoginUser;
