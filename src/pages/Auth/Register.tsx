@@ -5,6 +5,7 @@ import useRegisterUser from "../../hooks/Auth/useRegisterUser";
 interface registerUserInput {
   email: string;
   password: string;
+  displayName: string;
 }
 
 const Register: React.FC = () => {
@@ -23,6 +24,7 @@ const Register: React.FC = () => {
     await registerUserMutate({
       email: userInput.email,
       password: userInput.password,
+      displayName: userInput.displayName,
     });
     alert("회원가입 성공");
   };
@@ -66,6 +68,23 @@ const Register: React.FC = () => {
               id="email"
               type="email"
               {...register("email", { required: "이메일을 입력하세요" })}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-indigo-200"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-700"
+            >
+              유저이름
+            </label>
+            <input
+              id="username"
+              type="text"
+              {...register("displayName", {
+                required: "유저이름을 입력하세요",
+              })}
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-indigo-200"
             />
           </div>

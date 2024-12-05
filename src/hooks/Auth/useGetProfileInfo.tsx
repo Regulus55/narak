@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { auth } from "../../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const getProfileInfo = async () => {
   const user = auth.currentUser;
+
   if (!user) {
     throw new Error("User is not logged in");
   }
@@ -14,9 +16,19 @@ const getProfileInfo = async () => {
 };
 
 const useGetProfileInfo = () => {
+  const navigate = useNavigate();
+
   return useQuery({
     queryKey: ["profileInfo"],
-    queryFn: getProfileInfo,
+    queryFn: async () => {
+      try {
+        return await getProfileInfo();
+      } catch (error) {
+        navigate("/login");
+        throw error;
+      }
+    },
+
     staleTime: 5 * 60 * 1000,
   });
 };

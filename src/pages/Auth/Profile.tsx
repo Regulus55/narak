@@ -4,7 +4,7 @@ import { auth } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { data: user, isLoading, isError, error } = useGetProfileInfo();
+  const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -32,13 +32,13 @@ const Profile = () => {
     <div style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
       <h1>Profile Page</h1>
       <div>
-        <strong>Name:</strong> {user?.displayName}
+        <strong>Name:</strong> {profileInfo?.displayName}
       </div>
       <div>
-        <strong>Email:</strong> {user?.email}
+        <strong>Email:</strong> {profileInfo?.email}
       </div>
       <div>
-        <strong>UID:</strong> {user?.uid}
+        <strong>UID:</strong> {profileInfo?.uid}
       </div>
       <button
         onClick={handleLogout}

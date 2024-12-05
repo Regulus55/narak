@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 interface registerUserInput {
   email: string;
   password: string;
+  displayName: string;
 }
 
 const registerUser = async (userInput: registerUserInput): Promise<any> => {
@@ -14,7 +15,9 @@ const registerUser = async (userInput: registerUserInput): Promise<any> => {
     userInput.email,
     userInput.password
   );
-  return userCredential.user;
+  const user = userCredential.user;
+  await updateProfile(user, { displayName: userInput.displayName });
+  return user;
 };
 
 const useRegisterUser = () => {
