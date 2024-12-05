@@ -7,15 +7,6 @@ const Profile = () => {
   const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (err) {
-      console.error("Failed to logout:", err);
-    }
-  };
-
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -37,22 +28,6 @@ const Profile = () => {
       <div>
         <strong>Email:</strong> {profileInfo?.email}
       </div>
-      <div>
-        <strong>UID:</strong> {profileInfo?.uid}
-      </div>
-      <button
-        onClick={handleLogout}
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          backgroundColor: "#f44336",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        Logout
-      </button>
     </div>
   );
 };

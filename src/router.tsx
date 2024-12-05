@@ -9,6 +9,8 @@ import {
   Login,
   Profile,
 } from "./pages";
+import PublicRoute from "./components/routes/PublicRoute";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -16,30 +18,45 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFound />,
     children: [
+      // 비로그인 시 가능
+      {
+        element: <PublicRoute />,
+        children: [
+          {
+            path: "/register",
+            element: <Register />,
+          },
+          {
+            path: "/login",
+            element: <Login />,
+          },
+        ],
+      },
+
+      // 로그인 이후 가능
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/profile",
+            element: <Profile />,
+          },
+        ],
+      },
+
+      // 일반
       {
         index: true,
         path: "/",
         element: <Home />,
       },
       {
-        path: "/quotes",
-        element: <QuotesList />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
         path: "/datas",
         element: <Datas />,
+      },
+      {
+        path: "/quotes",
+        element: <QuotesList />,
       },
     ],
   },

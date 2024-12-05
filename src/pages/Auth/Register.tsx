@@ -45,6 +45,9 @@ const Register: React.FC = () => {
     ? registerErrorMessage(registerUserError)
     : null;
 
+  const EMAIL_REGEX =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
@@ -70,6 +73,10 @@ const Register: React.FC = () => {
             label="이메일"
             register={register("email", {
               required: "이메일을 입력하세요",
+              pattern: {
+                value: EMAIL_REGEX,
+                message: "이메일 양식 맞춰주세요",
+              },
             })}
             errorMessage={errors.email?.message}
           />
@@ -83,6 +90,10 @@ const Register: React.FC = () => {
               minLength: {
                 value: 6,
                 message: "비밀번호는 최소 6자리 이상이어야 합니다",
+              },
+              maxLength: {
+                value: 20,
+                message: "비밀번호는 최대 20자리 이상이어야 합니다",
               },
             })}
             errorMessage={errors.password?.message}
