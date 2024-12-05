@@ -2,6 +2,8 @@ import React from "react";
 
 import { useForm } from "react-hook-form";
 import useloginUser from "../../hooks/Auth/useLoginUser";
+import { FormInput } from "../../components/common";
+import { loginErrorMessage } from "../../utils/firebaseErrors";
 
 interface loginUserInput {
   email: string;
@@ -9,7 +11,11 @@ interface loginUserInput {
 }
 
 const Login: React.FC = () => {
-  const { register, handleSubmit } = useForm<loginUserInput>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<loginUserInput>({
     defaultValues: {
       email: "test@test.com",
       password: "test1234",
@@ -26,45 +32,49 @@ const Login: React.FC = () => {
   const isLoading = loginUserStatus === "pending";
 
   const loginUserHandler = async (userInput: loginUserInput) => {
-    await loginUserMutate({
-      email: userInput.email,
-      password: userInput.password,
-    });
+    try {
+      await loginUserMutate({
+        email: userInput.email,
+        password: userInput.password,
+      });
+    } catch (error) {}
   };
+
+  // 로그인 에러 메세지
+  const firebaseErrorMessage = loginUserError
+    ? loginErrorMessage(loginUserError)
+    : null;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-4">로그인</h2>
         <form onSubmit={handleSubmit(loginUserHandler)} className="space-y-4">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              이메일
-            </label>
-            <input
-              id="email"
-              type="email"
-              {...register("email", { required: "이메일을 입력해주세요" })}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-indigo-200"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              비밀번호
-            </label>
-            <input
-              id="password"
-              type="password"
-              {...register("password", { required: "비밀번호를 입력해주세요" })}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-indigo-200"
-            />
-          </div>
+          <FormInput
+            id="email"
+            type="email"
+            label="이메일"
+            register={register("email", {
+              required: "이메일을 입력하세요",
+            })}
+            errorMessage={errors.email?.message}
+          />
+
+          <FormInput
+            id="password"
+            type="password"
+            label="비밀번호"
+            register={register("password", {
+              required: "비밀번호를 입력하세요",
+            })}
+            errorMessage={errors.password && "비밀번호를 입력하세요"}
+          />
+
+          {/* 에러메세지 */}
+          {firebaseErrorMessage && (
+            <p className="text-red-500 text-sm mb-4">{firebaseErrorMessage}</p>
+          )}
+
           <button
             type="submit"
             className={

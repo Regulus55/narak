@@ -39,6 +39,7 @@ const Home = () => {
 
   return (
     <div>
+      Home
       {/* <h1>안녕</h1>
       {loading ? (
         <p>Loading...</p>
@@ -51,15 +52,6 @@ const Home = () => {
         <p>No product found</p>
       )}
 */}
-      <p>
-        <button onClick={() => navigate("/register")}>register</button>
-      </p>
-      <p>
-        <button onClick={() => navigate("/login")}>login</button>
-      </p>
-      <p>
-        <button onClick={() => navigate("/datas")}>datas</button>
-      </p>
     </div>
   );
 };
