@@ -1,8 +1,6 @@
 // src/firebaseConfig.js
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAhdIsDPk6iK0E7I94UeSSTCtmxuF9RP1A",
@@ -14,10 +12,13 @@ const firebaseConfig = {
   measurementId: "G-5LCVEM773R",
 };
 
-// Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+// Firebase 초기화
+const app = initializeApp(firebaseConfig);
 
-// Export the Firebase services you need
-export const auth = firebaseApp.auth();
-export const firestore = firebaseApp.firestore();
-export const storage = firebaseApp.storage();
+// Auth 테스트
+export const auth = getAuth(app);
+
+console.log("Firebase Initialized:", app);
+console.log("Auth Service:", auth);
+
+export default app;

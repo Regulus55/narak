@@ -4,13 +4,18 @@ import reportWebVitals from "./reportWebVitals";
 import ReactQueryWrapper from "./Provider";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
+import AuthWrapper from "./components/wrapper/AuthWrapper";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <ReactQueryWrapper>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}>
+      <AuthWrapper>
+        <RouterProvider router={router} />
+      </AuthWrapper>
+    </RouterProvider>
   </ReactQueryWrapper>
 );
 
