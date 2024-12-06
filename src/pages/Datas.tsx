@@ -62,6 +62,7 @@ const Datas = () => {
             e.preventDefault();
             getSingleStockData(stockSearchInput);
           }}
+
           className="space-y-4"
         >
           <div>

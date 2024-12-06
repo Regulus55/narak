@@ -24,7 +24,7 @@ const useGetProfileInfo = () => {
       try {
         return await getProfileInfo();
       } catch (error) {
-        navigate("/login");
+        // navigate("/register");
         throw error;
       }
     },
