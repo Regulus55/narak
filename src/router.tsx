@@ -19,30 +19,30 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       // 비로그인 시 가능
-      // {
-      //   element: <PublicRoute />,
-      //   children: [
       {
-        path: "/register",
-        element: <Register />,
+        element: <PublicRoute />,
+        children: [
+          {
+            path: "/register",
+            element: <Register />,
+          },
+          {
+            path: "/login",
+            element: <Login />,
+          },
+        ],
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      //   ],
-      // },
 
       // 로그인 이후 가능
-      // {
-      //   element: <ProtectedRoute />,
-      //   children: [
       {
-        path: "/profile",
-        element: <Profile />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/profile",
+            element: <Profile />,
+          },
+        ],
       },
-      //   ],
-      // },
 
       // 일반
       {
