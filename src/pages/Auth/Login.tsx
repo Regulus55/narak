@@ -14,11 +14,12 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<loginUserInput>({
     defaultValues: {
-      email: "test@test.com",
-      password: "test1234",
+      email: "test@narak.com",
+      password: "test123",
     },
   });
 
@@ -36,6 +37,11 @@ const Login: React.FC = () => {
       await loginUserMutate({
         email: userInput.email,
         password: userInput.password,
+      });
+
+      reset({
+        email: "test@test.com",
+        password: "test1234",
       });
     } catch (error) {}
   };

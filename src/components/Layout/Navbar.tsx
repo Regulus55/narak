@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import useGetProfileInfo from "../../hooks/Auth/useGetProfileInfo";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../../firebase/firebaseConfig";
 
 const Navbar = () => {
-  const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -27,6 +25,7 @@ const Navbar = () => {
         <div id="right" className="flex mx-2 space-x-2">
           {auth.currentUser ? (
             <>
+              <div>{auth.currentUser?.displayName}님</div>
               <button onClick={() => navigate("/profile")}>profile</button>
               <button onClick={handleLogout}>Logout</button>
             </>
