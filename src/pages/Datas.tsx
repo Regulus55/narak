@@ -46,7 +46,7 @@ const Datas = () => {
       if (stockSearchInput) {
         getSingleStockData(stockSearchInput);
       }
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(intervalId);
   }, [stockSearchInput, getSingleStockData]);
@@ -62,8 +62,10 @@ const Datas = () => {
             e.preventDefault();
             getSingleStockData(stockSearchInput);
           }}
+
+          className="space-y-4"
         >
-          <div className="mb-4">
+          <div>
             <input
               type="text"
               value={stockSearchInput}
@@ -78,7 +80,7 @@ const Datas = () => {
           </div>
 
           <button
-            onClick={() => getSingleStockData(stockSearchInput)}
+            type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition"
           >
             Search

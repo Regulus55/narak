@@ -33,8 +33,13 @@ const Profile = () => {
         </div>
 
         <div className="text-center mt-4">
-          <h2 className="text-xl font-semibold text-gray-800">홍길동</h2>
-          <p className="text-gray-500">honggildong@example.com</p>
+
+          <h2 className="text-xl font-semibold text-gray-800">
+            <strong>Name:</strong> {user?.displayName}
+          </h2>
+          <p className="text-gray-500">
+            <strong>Email:</strong> {user?.email}
+          </p>
         </div>
 
         <div className="mt-6">
