@@ -1,6 +1,7 @@
 // src/firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAhdIsDPk6iK0E7I94UeSSTCtmxuF9RP1A",
@@ -14,7 +15,7 @@ const firebaseConfig = {
 
 // Firebase 초기화
 const app = initializeApp(firebaseConfig);
-
+export const db = getFirestore(app);
 // Auth 테스트
 export const auth = getAuth(app);
 

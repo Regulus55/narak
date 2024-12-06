@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { auth } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase/firebaseConfig";
 
 const getProfileInfo = async () => {
   const user = auth.currentUser;

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../../firebase/firebaseConfig";
 
 // 로그인시 로그인 갔을때 프로파일로, 비로그인시 프로파일 갔을때 로그인으로
 const AuthWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {

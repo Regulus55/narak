@@ -1,11 +1,15 @@
 import useGetProfileInfo from "../../hooks/Auth/useGetProfileInfo";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Profile = () => {
   const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();
-  const navigate = useNavigate();
+  const user = auth.currentUser;
+
+  useEffect(() => {
+    // window.location.reload();
+  }, []);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -13,9 +17,7 @@ const Profile = () => {
 
   if (isError) {
     return (
-      <p>
-        Error: {error instanceof Error ? error.message : "An error occurred"}
-      </p>
+      <p>Error: {error instanceof Error ? error.message : "알 수 없는 에러"}</p>
     );
   }
 
@@ -23,10 +25,10 @@ const Profile = () => {
     <div style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
       <h1>Profile Page</h1>
       <div>
-        <strong>Name:</strong> {profileInfo?.displayName}
+        <strong>Name:</strong> {user?.displayName}
       </div>
       <div>
-        <strong>Email:</strong> {profileInfo?.email}
+        <strong>Email:</strong> {user?.email}
       </div>
     </div>
   );

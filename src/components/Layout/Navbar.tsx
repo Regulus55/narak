@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useGetProfileInfo from "../../hooks/Auth/useGetProfileInfo";
 import { signOut } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../../firebase/firebaseConfig";
 
 const Navbar = () => {
   const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();
