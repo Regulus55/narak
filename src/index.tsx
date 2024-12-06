@@ -11,11 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <ReactQueryWrapper>
-    <RouterProvider router={router}>
-      <AuthWrapper>
-        <RouterProvider router={router} />
-      </AuthWrapper>
-    </RouterProvider>
+    {/* <RouterProvider router={router}>
+      <AuthWrapper> */}
+    <RouterProvider router={router} />
+    {/* </AuthWrapper>
+    </RouterProvider> */}
   </ReactQueryWrapper>
 );
 

@@ -22,13 +22,30 @@ const Profile = () => {
   }
 
   return (
-    <div style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
-      <h1>Profile Page</h1>
-      <div>
-        <strong>Name:</strong> {user?.displayName}
-      </div>
-      <div>
-        <strong>Email:</strong> {user?.email}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white shadow-lg rounded-lg max-w-md w-full p-6">
+        <div className="flex justify-center">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="User Profile"
+            className="w-32 h-32 rounded-full border-4 border-gray-300"
+          />
+        </div>
+
+        <div className="text-center mt-4">
+          <h2 className="text-xl font-semibold text-gray-800">
+            <strong>Name:</strong> {user?.displayName}
+          </h2>
+          <p className="text-gray-500">
+            <strong>Email:</strong> {user?.email}
+          </p>
+        </div>
+
+        <div className="mt-6">
+          <button className="w-full py-2 px-4 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-600 transition">
+            프로필 업데이트
+          </button>
+        </div>
       </div>
     </div>
   );
