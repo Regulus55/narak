@@ -15,17 +15,31 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <div className="flex justify-between mx-2 ">
+    <nav className="bg-mainBlue w-full h-16">
+      <div className="flex justify-between items-center w-11/12 h-full mx-auto text-white">
         <div id="left" className="flex mx-2 space-x-2">
-          <button onClick={() => navigate("/")}>Narak</button>
+          <button onClick={() => navigate("/")} className="flex items-center">
+            <img
+              src={"/images/narakicon.png"}
+              alt=""
+              className="w-10 h-10 rounded-full"
+            />
+            <div>NARAK</div>
+          </button>
           <button onClick={() => navigate("/datas")}>datas</button>
         </div>
 
-        <div id="right" className="flex mx-2 space-x-2">
+        <div id="right" className="flex items-center mx-2 space-x-2">
           {auth.currentUser ? (
             <>
-              <div>{auth.currentUser?.displayName}님</div>
+              <div>
+                <img
+                  src={"/images/nouser.png"}
+                  alt=""
+                  className="w-10 h-10 rounded-full border-2 border-gray-300"
+                />
+              </div>
+              <div>{auth.currentUser?.displayName}</div>
               <button onClick={() => navigate("/profile")}>profile</button>
               <button onClick={handleLogout}>Logout</button>
             </>

@@ -26,14 +26,13 @@ const Profile = () => {
       <div className="bg-white shadow-lg rounded-lg max-w-md w-full p-6">
         <div className="flex justify-center">
           <img
-            src="https://via.placeholder.com/150"
+            src="/images/nouser.png"
             alt="User Profile"
             className="w-32 h-32 rounded-full border-4 border-gray-300"
           />
         </div>
 
         <div className="text-center mt-4">
-
           <h2 className="text-xl font-semibold text-gray-800">
             <strong>Name:</strong> {user?.displayName}
           </h2>
