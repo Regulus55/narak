@@ -8,6 +8,7 @@ import {
   Register,
   Login,
   Profile,
+  HTDatas,
 } from "./pages";
 import PublicRoute from "./components/routes/PublicRoute";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/datas",
         element: <Datas />,
+      },
+      {
+        path: "/htdatas",
+        element: <HTDatas />,
       },
       {
         path: "/quotes",

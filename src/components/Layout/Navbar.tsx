@@ -27,6 +27,7 @@ const Navbar = () => {
             <div>NARAK</div>
           </button>
           <button onClick={() => navigate("/datas")}>datas</button>
+          <button onClick={() => navigate("/htdatas")}>htdatas</button>
         </div>
 
         <div id="right" className="flex items-center mx-2 space-x-2">
