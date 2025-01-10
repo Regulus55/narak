@@ -1,66 +1,53 @@
-// HTDatas.tsx
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const HTDatas = () => {
-  const [stockData, setStockData] = useState<any>(null);
-  const [error, setError] = useState<string>("");
+const HTDatas: React.FC = () => {
+  const [price, setPrice] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const apiKey = process.env.REACT_APP_HANTOO_API_KEY!;
-  const apiSecret = process.env.REACT_APP_HANTOO_API_SECRET!;
+  useEffect(() => {
+    const fetchStockPrice = async () => {
+      try {
+        const response = await axios.get("https://www.alphavantage.co/query", {
+          params: {
+            function: "TIME_SERIES_INTRADAY",
+            symbol: "005930", // 삼성전자
+            interval: "1min",
+            apikey: "7DXQASAAH0Z065IS", // 여기에 실제 API 키를 입력하세요.
+          },
+        });
+        console.log(response);
+        const timeSeries = response.data["Time Series (1min)"];
+        if (!timeSeries) {
+          throw new Error("주식 데이터가 없습니다.");
+        }
 
-  const createHeaders = (): Record<string, string> => {
-    const timestamp = (Date.now() * 1000).toString();
-    const signData = apiKey + apiSecret + timestamp;
-    const signature = btoa(signData);
-
-    return {
-      "X-API-KEY": apiKey || "",
-      "X-Signature": signature,
-      "X-Timestamp": timestamp,
-    };
-  };
-
-  const getStockData = async () => {
-    const url =
-      "https://openapivts.koreainvestment.com:29443/uapi/domestic-stock/v1/quotations/inquire-price";
-    const headers = createHeaders();
-
-    try {
-      //   const res = await axios.get(
-      //     "http://ec2-13-125-246-160.ap-northeast-2.compute.amazonaws.com:8080/companies/123456"
-      //   );
-      //   console.log("reserserserserser", res);
-      const response = await axios.get(url, { headers });
-      if (response.status === 200) {
-        setStockData(response.data);
-      } else {
-        setError(`Error: ${response.status}`);
+        const latestTime = Object.keys(timeSeries)[0]; // 최신 데이터 시간
+        const latestPrice = timeSeries[latestTime]["1. open"]; // 최신 가격
+        setPrice(parseFloat(latestPrice));
+        setLoading(false);
+      } catch (error) {
+        setError("주식 가격 조회 오류");
+        setLoading(false);
       }
-    } catch (error: any) {
-      console.error("API 호출 중 오류 발생:", error);
-      setError(`API 호출 중 오류 발생: ${error.message || error}`);
-    }
-  };
+    };
 
-  //   useEffect(() => {
-  //     if (!apiKey || !apiSecret) {
-  //       setError("API Key 또는 API Secret이 설정되지 않았습니다.");
-  //       return;
-  //     }
-  //     getStockData();
-  //   }, [apiKey, apiSecret]);
+    fetchStockPrice();
+  }, []);
+
+  if (loading) {
+    return <div>가격을 불러오는 중...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
-      <h1>HT Datas</h1>
-      {/* {error && <p>{error}</p>}
-      {stockData ? (
-        <pre>{JSON.stringify(stockData, null, 2)}</pre>
-      ) : (
-        <p>로딩중...</p>
-      )} */}
-      <button onClick={getStockData}>버튼불러오가ㅣ기기기기</button>
+      <h1>삼성전자 주식 가격</h1>
+      <p>{price} 원</p>
     </div>
   );
 };
