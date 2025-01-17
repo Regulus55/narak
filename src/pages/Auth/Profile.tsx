@@ -20,7 +20,7 @@ const Profile = () => {
       <p>Error: {error instanceof Error ? error.message : "알 수 없는 에러"}</p>
     );
   }
-
+  console.log("유유유유유유유유", profileInfo);
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg max-w-md w-full p-6">
