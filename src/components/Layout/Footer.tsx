@@ -1,24 +1,30 @@
 import { FooterData1, FooterData2 } from "../../data/layout/footerData";
+import { Link, useNavigate } from "react-router-dom";
 
 // react-icons
 import { RiKakaoTalkLine } from "react-icons/ri";
 import { IoLogoGoogle } from "react-icons/io";
-import { IoLogoGithub } from "react-icons/io5";
 import { SiNaver } from "react-icons/si";
-import { Link, useNavigate } from "react-router-dom";
+import { IoLogoGithub } from "react-icons/io5";
+import { IoLogoInstagram } from "react-icons/io5";
+import { FiYoutube } from "react-icons/fi";
+import { SlSocialFacebook } from "react-icons/sl";
 
 const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="bg-gray-100 border-t-2 border-gray-200 py-4">
+    <footer className="bg-gray-200 pt-20 pb-8">
       <div className="flex flex-row w-1/2 mx-auto">
         <div className="w-2/3">
-          <div className="flex items-center space-x-4">
-            <RiKakaoTalkLine className="h-6 w-6" />
-            <IoLogoGoogle className="h-6 w-6" />
-            <SiNaver className="h-5 w-5" />
-            <IoLogoGithub className="h-6 w-6" />
+          <div className="flex items-center justify-between w-1/2">
+            <IoLogoInstagram className="h-6 w-6 hover:cursor-pointer" />
+            <FiYoutube className="h-6 w-6 hover:cursor-pointer" />
+            <SlSocialFacebook className="h-6 w-6 hover:cursor-pointer" />
+            <IoLogoGithub className="h-6 w-6 hover:cursor-pointer" />
+            {/* <IoLogoGoogle className="h-6 w-6 hover:cursor-pointer" />
+            <RiKakaoTalkLine className="h-6 w-6 hover:cursor-pointer" />
+            <SiNaver className="h-4 w-4 hover:cursor-pointer" /> */}
           </div>
           <div className="flex flex-col justify-evenly h-28">
             <div className="flex justify-between text-sm">
@@ -33,7 +39,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="text-sm">
+          <div className="text-sm mt-2">
             Made by{" "}
             <Link
               to="https://github.com/Regulus55"
@@ -46,7 +52,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex justify-center w-1/3">
+        <div className="flex justify-end w-1/3">
           <img
             src={"/images/narakicon.png"}
             alt=""
