@@ -7,6 +7,7 @@ import { signOut } from "firebase/auth";
 import { GoPerson } from "react-icons/go";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { FiPower } from "react-icons/fi";
+import { BiLockOpenAlt } from "react-icons/bi";
 
 interface DropdownProps {
   username: string | null;
@@ -61,7 +62,7 @@ const ProfileDropdown = ({ username }: DropdownProps) => {
         <img
           src={"/images/nouser.png"}
           alt="Profile"
-          className="w-10 h-10 rounded-full border-2 border-gray-300"
+          className="w-9 h-9 rounded-full border-2 border-gray-300"
         />
       </div>
 
@@ -71,29 +72,36 @@ const ProfileDropdown = ({ username }: DropdownProps) => {
         </button>
 
         {isOpen && (
-          <div className="absolute -left-12 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 px-2">
+          <div className="absolute -left-12 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 px-2">
             <div className="pt-2">
               <div
-                className="flex text-gray-700 block px-4 py-2 text-sm"
+                className="flex text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                 onClick={() => navigate("/profile")}
               >
                 <GoPerson className="h-4 w-4 mr-2" />
                 프로필
               </div>
               <div
-                className="flex text-gray-700 block px-4 py-2 text-sm"
+                className="flex text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                 onClick={() => navigate("/profile/edit")}
               >
                 <LiaUserEditSolid className="h-4 w-4 mr-2" />
                 프로필 수정
               </div>
+              <div
+                className="flex text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
+                onClick={() => console.log("LOCKEDDDD")}
+              >
+                <BiLockOpenAlt className="h-4 w-4 mr-2" />
+                화면 잠금
+              </div>
             </div>
 
             <div
-              className="flex text-gray-700 block px-4 py-4 text-sm border-t"
+              className="flex text-gray-700 block px-4 py-4 text-sm hover:bg-gray-100 border-t"
               onClick={handleLogout}
             >
-              <FiPower className="h-4 w-4 mr-2" />
+              <FiPower className="h-4 w-4 mr-2 hover:bg-gray-100" />
               로그아웃
             </div>
           </div>

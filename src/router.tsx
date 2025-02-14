@@ -10,6 +10,9 @@ import {
   Profile,
   EditProfile,
   Settings,
+  News,
+  Ranking,
+  Chat,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
 
@@ -46,6 +49,10 @@ const router = createBrowserRouter([
             path: "/profile/edit",
             element: <EditProfile />,
           },
+          {
+            path: "/chat",
+            element: <Chat />,
+          },
         ],
       },
 
@@ -62,6 +69,14 @@ const router = createBrowserRouter([
       {
         path: "/settings",
         element: <Settings />,
+      },
+      {
+        path: "/news",
+        element: <News />,
+      },
+      {
+        path: "/ranking",
+        element: <Ranking />,
       },
       {
         path: "/quotes",
