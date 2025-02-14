@@ -1,18 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
+import ProfileDropdown from "../common/ProfileDropdown";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (err) {
-      console.error("Failed to logout:", err);
-    }
-  };
+const username = auth.currentUser?.displayName || '사용자'
+
+  
 
   return (
     <nav className="bg-mainBlue w-full h-16">
@@ -32,21 +27,14 @@ const Navbar = () => {
         <div id="right" className="flex items-center mx-2 space-x-2">
           {auth.currentUser ? (
             <>
-              <div>
-                <img
-                  src={"/images/nouser.png"}
-                  alt=""
-                  className="w-10 h-10 rounded-full border-2 border-gray-300"
-                />
-              </div>
-              <div>{auth.currentUser?.displayName}</div>
-              <button onClick={() => navigate("/profile")}>profile</button>
-              <button onClick={handleLogout}>Logout</button>
+              
+              {/* <div>{username}</div> */}
+              <ProfileDropdown username={username} />
             </>
           ) : (
             <>
-              <button onClick={() => navigate("/register")}>register</button>
-              <button onClick={() => navigate("/login")}>login</button>
+              <button onClick={() => navigate("/register")}>회원가입</button>
+              <button onClick={() => navigate("/login")}>로그인</button>
             </>
           )}
         </div>
