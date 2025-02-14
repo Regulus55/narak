@@ -2,13 +2,9 @@ import useGetProfileInfo from "../../hooks/Auth/useGetProfileInfo";
 import { auth } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
 
-const Profile = () => {
+const EditProfile = () => {
   const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();
   const user = auth.currentUser;
-
-  useEffect(() => {
-    // window.location.reload();
-  }, []);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -19,11 +15,11 @@ const Profile = () => {
       <p>Error: {error instanceof Error ? error.message : "알 수 없는 에러"}</p>
     );
   }
-  console.log("유유유유유유유유", profileInfo);
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg max-w-md w-full p-6">
         <div className="flex justify-center">
+          프로필 업뎃 하는 페이지임
           <img
             src="/images/nouser.png"
             alt="User Profile"
@@ -50,4 +46,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default EditProfile;

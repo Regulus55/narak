@@ -8,9 +8,10 @@ import {
   Register,
   Login,
   Profile,
+  EditProfile,
+  Settings,
 } from "./pages";
-import PublicRoute from "./components/routes/PublicRoute";
-import ProtectedRoute from "./components/routes/ProtectedRoute";
+import { PublicRoute, ProtectedRoute } from "./components/routes";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             path: "/profile",
             element: <Profile />,
           },
+          {
+            path: "/profile/edit",
+            element: <EditProfile />,
+          },
         ],
       },
 
@@ -53,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/datas",
         element: <Datas />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
       {
         path: "/quotes",

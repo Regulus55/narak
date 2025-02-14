@@ -1,35 +1,50 @@
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig";
-import ProfileDropdown from "../common/ProfileDropdown";
+import ProfileDropdown from "./ProfileDropdown";
+import { useEffect, useState } from "react";
+import { IoSettingsOutline } from "react-icons/io5";
+import { onAuthStateChanged, User } from "firebase/auth";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-const username = auth.currentUser?.displayName || '사용자'
+  const [user, setUser] = useState<User | null>(null); // auth.currentUser
+  const username = user?.displayName || "사용자";
 
-  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <nav className="bg-mainBlue w-full h-16">
-      <div className="flex justify-between items-center w-11/12 h-full mx-auto text-white">
-        <div id="left" className="flex mx-2 space-x-2">
+      <div className="flex justify-between items-center w-2/3 h-full mx-auto text-white">
+        <div id="left" className="flex mx-2 space-x-4">
           <button onClick={() => navigate("/")} className="flex items-center">
             <img
               src={"/images/narakicon.png"}
               alt=""
-              className="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full mr-1"
             />
-            <div>NARAK</div>
+            <div className="text-sm hover:scale-105">NARAK</div>
           </button>
-          <button onClick={() => navigate("/datas")}>datas</button>
+          <button
+            onClick={() => navigate("/datas")}
+            className="hover:scale-105"
+          >
+            datas
+          </button>
         </div>
 
-        <div id="right" className="flex items-center mx-2 space-x-2">
-          {auth.currentUser ? (
+        <div id="right" className="flex items-center mx-2 space-x-4">
+          {user ? (
             <>
-              
-              {/* <div>{username}</div> */}
               <ProfileDropdown username={username} />
+              <button onClick={() => navigate("/settings")}>
+                <IoSettingsOutline className="w-6 h-6 text-white hover:scale-110" />
+              </button>
             </>
           ) : (
             <>
