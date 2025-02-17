@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
-import { Footer, TopNavbar } from "./components/Layout";
+import { Footer, Navbar } from "./components/Layout";
 
 const App = () => {
   return (
     <>
-      <TopNavbar />
-      <Outlet />
+      <Navbar />
+      <div className="pt-16 min-h-[80vh] bg-gray-100">
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

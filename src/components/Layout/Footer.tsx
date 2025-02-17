@@ -14,7 +14,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="bg-gray-200 pt-20 pb-8">
+    <footer className="bg-gray-200 pt-20 pb-8 z-10">
       <div className="flex flex-row w-1/2 mx-auto">
         <div className="w-2/3">
           <div className="flex items-center justify-between w-1/2">
