@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
+import { User } from "firebase/auth";
 
+// react-icons
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrSearch } from "react-icons/gr";
-import { User } from "firebase/auth";
 
 interface TopNavbarProps {
   isSideOpen: boolean;
@@ -19,6 +20,12 @@ const TopNavbar: React.FC<TopNavbarProps> = ({
   const navigate = useNavigate();
 
   const username = user?.displayName || "사용자";
+
+  const LogButton = ({ text, path }: { text: string; path: string }) => (
+    <button className="py-2 active:scale-105" onClick={() => navigate(path)}>
+      {text}
+    </button>
+  );
 
   return (
     <div className="flex justify-between items-center w-2/3 h-full mx-auto text-white">
@@ -45,31 +52,19 @@ const TopNavbar: React.FC<TopNavbarProps> = ({
         <div className="text-xl">NARAK</div>
       </div>
 
-      <div id="right" className="flex items-center mx-2 space-x-4">
+      <div id="right" className="flex items-center space-x-4">
         <GrSearch
           onClick={() => navigate("/datas")}
           className="w-6 h-6 active:scale-110"
           role="button"
         />
         {user ? (
-          <>
-            <ProfileDropdown username={username} />
-          </>
+          <ProfileDropdown username={username} />
         ) : (
-          <div>
-            <button
-              className="p-2 active:scale-105"
-              onClick={() => navigate("/register")}
-            >
-              회원가입
-            </button>
-            <button
-              className="p-2 active:scale-105"
-              onClick={() => navigate("/login")}
-            >
-              로그인
-            </button>
-          </div>
+          <>
+            <LogButton text="회원가입" path="/register" />
+            <LogButton text="로그인" path="/login" />
+          </>
         )}
       </div>
     </div>
