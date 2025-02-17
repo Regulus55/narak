@@ -5,17 +5,20 @@ import ReactQueryWrapper from "./Provider";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import AuthWrapper from "./components/wrapper/AuthWrapper";
+import AllContextProvider from "./context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <ReactQueryWrapper>
-    <RouterProvider router={router}>
-      <AuthWrapper>
-        <RouterProvider router={router} />
-      </AuthWrapper>
-    </RouterProvider>
+    <AllContextProvider>
+      <RouterProvider router={router}>
+        <AuthWrapper>
+          <RouterProvider router={router} />
+        </AuthWrapper>
+      </RouterProvider>
+    </AllContextProvider>
   </ReactQueryWrapper>
 );
 

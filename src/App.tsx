@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
 import { Footer, Navbar } from "./components/Layout";
+import OutletWrapper from "./components/wrapper/OutletWrapper";
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <div className="pt-16 min-h-[80vh] bg-gray-100">
+      <OutletWrapper>
         <Outlet />
-      </div>
+      </OutletWrapper>
       <Footer />
     </>
   );

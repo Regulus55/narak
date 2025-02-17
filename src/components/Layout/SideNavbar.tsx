@@ -1,25 +1,17 @@
-import { User } from "firebase/auth";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SideNavIcons } from "../../data/layout/navbarData";
+import { useSideNav } from "../../context/SideNavProvider";
+import { useUser } from "../../context/UserContext";
 
-interface TopNavbarProps {
-  isSideOpen: boolean;
-  setIsSideOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  user: User | null;
-}
-
-const SideNavbar: React.FC<TopNavbarProps> = ({
-  isSideOpen,
-  setIsSideOpen,
-  user,
-}) => {
+const SideNavbar = () => {
   const navigate = useNavigate();
+  const { isSideOpen } = useSideNav();
+  const { user } = useUser();
 
   return (
     <div
-      className={`fixed top-16 left-0 h-full w-60 bg-gray-100 border-r-4  border-l-4    transform transition-transform duration-300 ease-in-out ${
-        isSideOpen ? "translate-x-80" : "translate-x-40"
+      className={`fixed top-16 left-0 h-full w-60 bg-gray-100 border-r-4  border-l-4    transform transition-transform duration-300 ease-in-out z-10 ${
+        isSideOpen ? "translate-x-72" : "translate-x-40"
       }`}
     >
       <ul className="space-y-4 p-4">

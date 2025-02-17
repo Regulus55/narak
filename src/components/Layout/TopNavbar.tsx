@@ -1,23 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
-import { User } from "firebase/auth";
 
 // react-icons
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrSearch } from "react-icons/gr";
+import { useSideNav } from "../../context/SideNavProvider";
+import { useUser } from "../../context/UserContext";
 
-interface TopNavbarProps {
-  isSideOpen: boolean;
-  setIsSideOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  user: User | null;
-}
-
-const TopNavbar: React.FC<TopNavbarProps> = ({
-  isSideOpen,
-  setIsSideOpen,
-  user,
-}) => {
+const TopNavbar = () => {
   const navigate = useNavigate();
+  const { setIsSideOpen } = useSideNav();
+  const { user } = useUser();
 
   const username = user?.displayName || "사용자";
 
