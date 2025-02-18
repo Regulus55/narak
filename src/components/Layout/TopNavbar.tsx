@@ -21,7 +21,7 @@ const TopNavbar = () => {
   );
 
   return (
-    <div className="flex justify-between items-center w-2/3 h-full mx-auto text-white">
+    <div className="flex justify-between items-center w-2/3 h-full mx-auto text-white ">
       <div id="left" className="flex items-center mx-2 space-x-4">
         <button
           className="p-2 rounded-md active:scale-110"

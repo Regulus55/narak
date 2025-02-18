@@ -3,7 +3,7 @@ import SideNavbar from "./SideNavbar";
 
 const Navbar = () => {
   return (
-    <nav className="bg-mainBlue fixed w-full h-16 z-50">
+    <nav className="bg-mainBlue fixed w-full h-16">
       <TopNavbar />
       <SideNavbar />
     </nav>

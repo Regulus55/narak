@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { SideNavIcons } from "../../data/layout/navbarData";
 import { useSideNav } from "../../context/SideNavProvider";
 import { useUser } from "../../context/UserContext";
+import styles from "../../styles/Sidebar.module.css";
 
 const SideNavbar = () => {
   const navigate = useNavigate();
@@ -10,8 +11,8 @@ const SideNavbar = () => {
 
   return (
     <div
-      className={`fixed top-16 left-0 h-full w-60 bg-gray-100 border-r-4  border-l-4    transform transition-transform duration-300 ease-in-out z-10 ${
-        isSideOpen ? "translate-x-72" : "translate-x-40"
+      className={`${styles.sidebar} ${
+        isSideOpen ? styles.sidebarOpen : styles.sidebarClosed
       }`}
     >
       <ul className="space-y-4 p-4">
