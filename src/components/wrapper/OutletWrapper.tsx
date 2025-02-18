@@ -10,10 +10,13 @@ const OutletWrapper: React.FC<{ children: React.ReactNode }> = ({
   const { user } = useUser();
 
   return (
-    <div className="pt-16 min-h-[80vh] bg-gray-100 z-40">
-      {/* 좌우 사이드 배경 */}
-      <div className="w-2/3 p-2 min-h-[80vh] mx-auto p-4 bg-gray-200">
-        {/* 가운데 회색박스, 위치고정 */}
+    <div className="grid grid-cols-6 w-full pt-16 min-h-[80vh]">
+      <div id="left-space" className="col-span-1 bg-gray-100 z-40" />
+
+      <div
+        id="main-space"
+        className="col-span-4 w-full p-2 min-h-[80vh] mx-auto p-4 bg-gray-200"
+      >
         <div
           className={`${styles.mainContent} ${
             isSideOpen ? styles.mainContentOpen : ""
@@ -22,6 +25,7 @@ const OutletWrapper: React.FC<{ children: React.ReactNode }> = ({
           {children}
         </div>
       </div>
+      <div id="left-space" className="col-span-1 bg-gray-100 z-40" />
     </div>
   );
 };
