@@ -6,7 +6,6 @@ const App = () => {
   return (
     <>
       <TopNavbar />
-      <SideNavbar />
       <OutletWrapper>
         <Outlet />
       </OutletWrapper>
