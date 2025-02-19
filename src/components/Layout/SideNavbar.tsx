@@ -16,10 +16,10 @@ const SidebarWrapper = styled.div<SidebarWrapperProps>`
   background-color: #f3f4f6; /* bg-gray-100 */
   border-right: 4px solid #d1d5db;
   border-left: 4px solid #d1d5db;
-  width: 13%;
+  width: 180px;
   z-index: 30;
   transform: ${({ isSideOpen }) =>
-    isSideOpen ? "translateX(120%)" : "translateX(70%)"};
+    isSideOpen ? "translateX(168%)" : "translateX(78%)"};
   transition: transform 0.3s ease-in-out;
 `;
 

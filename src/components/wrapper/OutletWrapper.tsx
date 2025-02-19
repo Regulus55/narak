@@ -10,10 +10,10 @@ interface MainContentProps {
 
 const MainContent = styled.div<MainContentProps>`
   min-height: 80vh;
-  background-color: #f3f4f6; /* bg-gray-100 */
+  background-color: #f3f4f6; /* bg-gray-100 f3f4f6*/
   transition: all 0.3s ease-in-out;
-  width: ${({ isSideOpen }) => (isSideOpen ? "82%" : "92%")};
-  margin-left: ${({ isSideOpen }) => (isSideOpen ? "18%" : "8%")};
+  width: ${({ isSideOpen }) => (isSideOpen ? "87%" : "100%")};
+  margin-left: ${({ isSideOpen }) => (isSideOpen ? "13%" : "0%")};
   z-index: 20;
 `;
 
@@ -29,7 +29,7 @@ const OutletWrapper: React.FC<{ children: React.ReactNode }> = ({
 
       <div
         id="main-space"
-        className="col-span-4 w-full p-2 min-h-[80vh] mx-auto p-4 bg-gray-200"
+        className="col-span-4 w-full min-h-[80vh] mx-auto p-4 bg-gray-200"
       >
         <SideNavbar />
         <MainContent isSideOpen={isSideOpen}>{children}</MainContent>

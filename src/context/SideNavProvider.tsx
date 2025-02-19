@@ -15,7 +15,7 @@ interface SideNavProviderProps {
 export const SideNavProvider: React.FC<SideNavProviderProps> = ({
   children,
 }) => {
-  const [isSideOpen, setIsSideOpen] = useState(false);
+  const [isSideOpen, setIsSideOpen] = useState(true);
 
   return (
     <SideNavContext.Provider value={{ isSideOpen, setIsSideOpen }}>
