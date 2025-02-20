@@ -1,7 +1,7 @@
 import useGetProfileInfo from "../../hooks/Auth/useGetProfileInfo";
 import { auth } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
-import WhiteContentBox from "../../components/common/WhiteContentBox";
+import { WhiteContentBox } from "../../components/common";
 
 const Profile = () => {
   const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();

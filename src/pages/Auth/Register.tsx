@@ -2,12 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useRegisterUser from "../../hooks/Auth/useRegisterUser";
 import { registerErrorMessage } from "../../utils/firebaseErrors";
-import { FormInput } from "../../components/common";
+import { FormInput, WhiteContentBox } from "../../components/common";
 import {
   ConfirmPasswordValidation,
   EmailValidation,
   PasswordValidation,
 } from "../../utils/validationRules";
+import { useNavigate } from "react-router-dom";
 
 interface registerUserInput {
   displayName: string;
@@ -17,6 +18,8 @@ interface registerUserInput {
 }
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -50,14 +53,22 @@ const Register: React.FC = () => {
     : null;
 
   return (
-    <div className="min-h-screen flex justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-lg w-full max-w-md p-6 mx-4 my-6 md:mt-12">
+    <div className="flex justify-center bg-gray-100">
+      <WhiteContentBox className="shadow-xl rounded-none h-full w-full md:max-w-md p-6 mx-4 mt-24 md:mt-28">
         <h2 className="text-2xl font-bold text-center mb-4">회원가입</h2>
 
         <form
           onSubmit={handleSubmit(registerUserHandler)}
           className="space-y-4"
         >
+          <FormInput
+            id="email"
+            type="email"
+            label="이메일"
+            register={register("email", EmailValidation)}
+            errorMessage={errors.email?.message}
+          />
+
           <FormInput
             id="username"
             type="text"
@@ -66,14 +77,6 @@ const Register: React.FC = () => {
               required: "유저이름을 입력하세요",
             })}
             errorMessage={errors.displayName?.message}
-          />
-
-          <FormInput
-            id="email"
-            type="email"
-            label="이메일"
-            register={register("email", EmailValidation)}
-            errorMessage={errors.email?.message}
           />
 
           <FormInput
@@ -105,10 +108,20 @@ const Register: React.FC = () => {
               "w-full py-2 text-white bg-gray-400 font-semibold rounded"
             }
           >
-            {isLoading ? "제출중..." : "회원가입"}
+            {isLoading ? "로딩중..." : "회원가입"}
           </button>
         </form>
-      </div>
+
+        <div className="flex justify-center border-t border-gray-200 mt-4 pt-4">
+          <div className="text-gray-700">이미 아이디가 있나요?</div>
+          <div
+            className="ml-2 font-bold text-blue-800 hover:text-gray-500 underline hover:cursor-pointer"
+            onClick={() => navigate("/login")}
+          >
+            로그인
+          </div>
+        </div>
+      </WhiteContentBox>
     </div>
   );
 };

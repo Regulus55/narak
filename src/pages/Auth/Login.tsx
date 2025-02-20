@@ -2,8 +2,9 @@ import React from "react";
 
 import { useForm } from "react-hook-form";
 import useloginUser from "../../hooks/Auth/useLoginUser";
-import { FormInput } from "../../components/common";
+import { FormInput, WhiteContentBox } from "../../components/common";
 import { loginErrorMessage } from "../../utils/firebaseErrors";
+import { useNavigate } from "react-router-dom";
 
 interface loginUserInput {
   email: string;
@@ -11,6 +12,8 @@ interface loginUserInput {
 }
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -52,8 +55,8 @@ const Login: React.FC = () => {
     : null;
 
   return (
-    <div className="min-h-screen flex justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-xl w-full md:max-w-md p-6 mx-4 my-6 md:mt-12">
+    <div className="flex items-center justify-center bg-gray-100">
+      <WhiteContentBox className="shadow-xl rounded-none w-full h-full md:max-w-md p-6 mx-4 mt-28">
         <h2 className="text-2xl font-bold text-center mb-4">로그인</h2>
         <form onSubmit={handleSubmit(loginUserHandler)} className="space-y-4">
           <FormInput
@@ -90,7 +93,17 @@ const Login: React.FC = () => {
             {isLoading ? "로딩..." : "로그인"}
           </button>
         </form>
-      </div>
+
+        <div className="flex justify-center border-t border-gray-200 mt-4 pt-4">
+          <div className="text-gray-700">아직 아이디가 없나요?</div>
+          <div
+            className="ml-2 font-bold text-blue-800 hover:text-gray-500 underline hover:cursor-pointer"
+            onClick={() => navigate("/register")}
+          >
+            회원가입
+          </div>
+        </div>
+      </WhiteContentBox>
     </div>
   );
 };

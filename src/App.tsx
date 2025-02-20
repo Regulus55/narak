@@ -1,12 +1,6 @@
 import { Outlet } from "react-router-dom";
-import {
-  BottomNavbar,
-  Footer,
-  Navbar,
-  SideNavbar,
-  TopNavbar,
-} from "./components/Layout";
-import OutletWrapper from "./components/wrapper/OutletWrapper";
+import { BottomNavbar, Footer, TopNavbar } from "./components/Layout";
+import { OutletWrapper } from "./components/wrapper";
 
 const App = () => {
   return (

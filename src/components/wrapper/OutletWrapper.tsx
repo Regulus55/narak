@@ -26,11 +26,8 @@ const OutletWrapper: React.FC<{ children: React.ReactNode }> = ({
   const { user } = useUser();
 
   return (
-    <div className="w-full pt-16 min-h-[60vh] bg-gray-100">
-      <div
-        id="main-space"
-        className="max-w-7xl min-w-[300px] h-[60vh] mx-auto z-40"
-      >
+    <div className="w-full pt-16 min-h-[100vh] bg-gray-100">
+      <div id="main-space" className="max-w-7xl min-w-[300px] mx-auto z-40">
         <SideNavbar />
         <MainContent isSideOpen={isSideOpen}>{children}</MainContent>
       </div>

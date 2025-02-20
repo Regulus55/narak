@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useSideNav } from "../../context/SideNavProvider";
+import { useUser } from "../../context/UserContext";
 import ProfileDropdown from "./ProfileDropdown";
+import GuestDropdown from "./GuestDropdown";
 
 // react-icons
 import { HiOutlineMenu } from "react-icons/hi";
 import { GrSearch } from "react-icons/gr";
-import { useSideNav } from "../../context/SideNavProvider";
-import { useUser } from "../../context/UserContext";
 
 const TopNavbar = () => {
   const navigate = useNavigate();
@@ -15,7 +16,10 @@ const TopNavbar = () => {
   const username = user?.displayName || "사용자";
 
   const LogButton = ({ text, path }: { text: string; path: string }) => (
-    <button className="py-2 active:scale-105" onClick={() => navigate(path)}>
+    <button
+      className="py-2 active:scale-105 hidden md:block"
+      onClick={() => navigate(path)}
+    >
       {text}
     </button>
   );
@@ -58,8 +62,7 @@ const TopNavbar = () => {
             <ProfileDropdown username={username} />
           ) : (
             <>
-              <LogButton text="회원가입" path="/register" />
-              <LogButton text="로그인" path="/login" />
+              <GuestDropdown />
             </>
           )}
         </div>
