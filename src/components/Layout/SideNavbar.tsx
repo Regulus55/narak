@@ -31,8 +31,8 @@ const SideNavbar: React.FC = () => {
   return (
     <div
       className={`fixed top-16 left-0 h-full bg-gray-100 border-r-4 border-gray-300 
-        transition-transform duration-300 ease-in-out w-[10vw] z-30        
-        ${isSideOpen ? "translate-x-72 ml-4" : "translate-x-40 hidden"}`}
+        transition-transform duration-300 ease-in-out min-w-[10vw] z-30        
+        ${isSideOpen ? "translate-x-0 ml-4" : "translate-x-0 hidden"}`}
     >
       <ul className="space-y-4 p-4">
         {SideNavIcons.map(({ Icon, text, path, onClick, loginOnly }, index) =>
