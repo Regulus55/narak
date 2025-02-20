@@ -1,16 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { Footer, Navbar, SideNavbar, TopNavbar } from "./components/Layout";
-import OutletWrapper from "./components/wrapper/OutletWrapper";
+import { BottomNavbar, Footer, TopNavbar } from "./components/Layout";
+import { OutletWrapper } from "./components/wrapper";
 
 const App = () => {
   return (
     <>
       <TopNavbar />
-      <SideNavbar />
       <OutletWrapper>
         <Outlet />
       </OutletWrapper>
       <Footer />
+      <BottomNavbar />
     </>
   );
 };

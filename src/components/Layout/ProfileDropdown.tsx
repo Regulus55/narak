@@ -58,21 +58,24 @@ const ProfileDropdown = ({ username }: DropdownProps) => {
       className="flex items-center hover:cursor-pointer"
       onClick={toggleDropdown}
     >
-      <div className="mr-2">
+      <div className="mr-1">
         <img
           src={"/images/nouser.png"}
           alt="Profile"
-          className="w-9 h-9 rounded-full border-2 border-gray-300"
+          className="w-8 h-8 rounded-full border-2 border-gray-300"
         />
       </div>
 
       <div className="relative inline-block text-left" ref={dropdownRef}>
-        <button className="inline-flex justify-center w-full rounded-md text-sm font-medium text-white hover:scale-105">
-          {username}
-        </button>
-
         {isOpen && (
-          <div className="absolute -left-12 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 px-2">
+          <div
+            className={`
+              fixed w-full top-16 left-0 h-auto z-50 rounded-b-md 
+              shadow-2xl bg-white ring-1 ring-black ring-opacity-5 px-2
+              md:absolute md:-left-40 md:top-6 md:w-40 md:rounded-md md:shadow-md
+             
+           `}
+          >
             <div className="pt-2">
               <div
                 className="flex text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
