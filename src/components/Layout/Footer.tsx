@@ -16,9 +16,9 @@ const Footer = () => {
   return location.pathname.includes("login") ||
     location.pathname.includes("register") ? null : (
     <footer className="bg-gray-400 pt-20 pb-32 md:pb-16 z-50 relative">
-      <div className="flex flex-row max-w-6xl min-w-[300px] mx-auto px-16">
-        <div className="w-2/3">
-          <div className="flex items-center justify-between w-1/2">
+      <div className="grid  sm:grid-cols-3 max-w-6xl min-w-[300px] mx-auto px-6 sm:px-16 min-h-[250px]">
+        <div className="col-span-3 w-full sm:col-span-2 flex flex-col items-between justify-evenly">
+          <div className="flex items-center justify-between w-full mb-8 sm:mb-4 sm:w-1/2">
             {socialIcons.map(({ Icon, alt }, index) => (
               <Icon
                 key={index}
@@ -30,7 +30,7 @@ const Footer = () => {
             <RiKakaoTalkLine className="h-6 w-6 hover:cursor-pointer" />
             <SiNaver className="h-4 w-4 hover:cursor-pointer" /> */}
           </div>
-          <div className="flex flex-col justify-evenly h-28">
+          <div className="flex flex-col justify-between h-28">
             <div className="flex justify-between text-sm">
               {FooterData1.map((data, index) => (
                 <div key={index}>{data}</div>
@@ -41,22 +41,28 @@ const Footer = () => {
                 <div key={index}>{data}</div>
               ))}
             </div>
-          </div>
 
-          <div className="text-sm mt-2">
-            Made by{" "}
-            <Link
-              to="https://github.com/Regulus55"
-              className="text-blue-600 hover:underline"
-              target="_blank"
-            >
-              Regulus55
-            </Link>
-            . All rights reserved.
+            <div className="text-sm mt-2 md:mx-0 mx-auto">
+              Made by{" "}
+              <Link
+                to="https://github.com/Regulus55"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+              >
+                Regulus55
+              </Link>
+              . All rights reserved.
+            </div>
           </div>
         </div>
 
-        <div className="flex justify-end w-1/3">
+        <div
+          className={`
+          flex items-center
+          col-span-3 justify-center mt-10
+          sm:col-span-1 sm:justify-end sm:-mt-8
+          `}
+        >
           <img
             src={"/images/narakicon.png"}
             alt=""
