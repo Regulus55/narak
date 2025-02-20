@@ -50,8 +50,8 @@ const Register: React.FC = () => {
     : null;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
+    <div className="min-h-screen flex justify-center bg-gray-100">
+      <div className="bg-white p-6 rounded shadow-lg w-full max-w-md p-6 mx-4 my-6 md:mt-12">
         <h2 className="text-2xl font-bold text-center mb-4">회원가입</h2>
 
         <form

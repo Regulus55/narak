@@ -1,5 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { Footer, Navbar, SideNavbar, TopNavbar } from "./components/Layout";
+import {
+  BottomNavbar,
+  Footer,
+  Navbar,
+  SideNavbar,
+  TopNavbar,
+} from "./components/Layout";
 import OutletWrapper from "./components/wrapper/OutletWrapper";
 
 const App = () => {
@@ -10,6 +16,7 @@ const App = () => {
         <Outlet />
       </OutletWrapper>
       <Footer />
+      <BottomNavbar />
     </>
   );
 };

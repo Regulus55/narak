@@ -1,6 +1,7 @@
 import useGetProfileInfo from "../../hooks/Auth/useGetProfileInfo";
 import { auth } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
+import WhiteContentBox from "../../components/common/WhiteContentBox";
 
 const Profile = () => {
   const { data: profileInfo, isLoading, isError, error } = useGetProfileInfo();
@@ -19,10 +20,10 @@ const Profile = () => {
       <p>Error: {error instanceof Error ? error.message : "알 수 없는 에러"}</p>
     );
   }
-  console.log("유유유유유유유유", profileInfo);
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white shadow-lg rounded-lg max-w-md w-full p-6">
+    <div className="flex items-start justify-center">
+      <WhiteContentBox className="shadow-lg max-w-md w-full p-6 mx-4 my-6 md:mt-12">
         <div className="flex justify-center">
           <img
             src="/images/nouser.png"
@@ -30,7 +31,6 @@ const Profile = () => {
             className="w-32 h-32 rounded-full border-4 border-gray-300"
           />
         </div>
-
         <div className="text-center mt-4">
           <h2 className="text-xl font-semibold text-gray-800">
             <strong>Name:</strong> {user?.displayName}
@@ -39,13 +39,12 @@ const Profile = () => {
             <strong>Email:</strong> {user?.email}
           </p>
         </div>
-
         <div className="mt-6">
           <button className="w-full py-2 px-4 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-600 transition">
             프로필 업데이트
           </button>
         </div>
-      </div>
+      </WhiteContentBox>
     </div>
   );
 };

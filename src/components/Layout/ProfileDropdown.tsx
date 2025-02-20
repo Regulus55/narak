@@ -67,14 +67,21 @@ const ProfileDropdown = ({ username }: DropdownProps) => {
       </div>
 
       <div className="relative inline-block text-left" ref={dropdownRef}>
-        <button
+        {/* <button
           className={`inline-flex justify-center w-full rounded-md text-sm font-medium text-white hover:scale-105 hidden lg:block`}
         >
           {username}
-        </button>
+        </button> */}
 
         {isOpen && (
-          <div className="absolute -left-12 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 px-2">
+          <div
+            className={`
+              fixed w-full top-16 left-0 h-auto z-50 rounded-b-md 
+              shadow-2xl bg-white ring-1 ring-black ring-opacity-5 px-2
+              md:absolute md:-left-40 md:top-6 md:w-40 md:rounded-md md:shadow-md
+             
+           `}
+          >
             <div className="pt-2">
               <div
                 className="flex text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
