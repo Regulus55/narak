@@ -67,7 +67,9 @@ const ProfileDropdown = ({ username }: DropdownProps) => {
       </div>
 
       <div className="relative inline-block text-left" ref={dropdownRef}>
-        <button className="inline-flex justify-center w-full rounded-md text-sm font-medium text-white hover:scale-105">
+        <button
+          className={`inline-flex justify-center w-full rounded-md text-sm font-medium text-white hover:scale-105 hidden lg:block`}
+        >
           {username}
         </button>
 

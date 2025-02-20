@@ -18,9 +18,9 @@ const SidebarWrapper = styled.div<SidebarWrapperProps>`
   border-left: 4px solid #d1d5db;
   width: 180px;
   z-index: 30;
+  transition: transform 0.3s ease-in-out;
   transform: ${({ isSideOpen }) =>
     isSideOpen ? "translateX(168%)" : "translateX(78%)"};
-  transition: transform 0.3s ease-in-out;
 `;
 
 const SideNavbar: React.FC = () => {
@@ -29,7 +29,11 @@ const SideNavbar: React.FC = () => {
   const { user } = useUser();
 
   return (
-    <SidebarWrapper isSideOpen={isSideOpen}>
+    <div
+      className={`fixed top-16 left-0 h-full bg-gray-100 border-r-4 border-gray-300 
+        transition-transform duration-300 ease-in-out w-[10vw] z-30        
+        ${isSideOpen ? "translate-x-72 ml-4" : "translate-x-40 hidden"}`}
+    >
       <ul className="space-y-4 p-4">
         {SideNavIcons.map(({ Icon, text, path, onClick, loginOnly }, index) =>
           loginOnly === undefined || loginOnly === Boolean(user) ? ( //loginOnly 가 없거나 undefined 면 표시, true면 로그인후에만 표시
@@ -45,7 +49,7 @@ const SideNavbar: React.FC = () => {
           ) : null
         )}
       </ul>
-    </SidebarWrapper>
+    </div>
   );
 };
 
