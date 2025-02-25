@@ -23,7 +23,8 @@ ChartJS.register(
 );
 
 const StockChart = () => {
-  const [stockSymbol, setStockSymbol] = useState<string>("");
+  const [stockSymbolData, setStockSymbolData] = useState<string>("");
+  const [searchSymbol, setSearchSymbol] = useState<string>("");
   const [stockHistory, setStockHistory] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -58,83 +59,22 @@ const StockChart = () => {
   };
 
   useEffect(() => {
-    if (stockSymbol) {
-      fetchStockData(stockSymbol);
+    if (searchSymbol) {
+      fetchStockData(searchSymbol);
     }
-  }, [stockSymbol]);
+  }, [searchSymbol]);
 
   const reversedData = [...stockHistory].reverse();
-
   const currentPrice = reversedData.length > 0 ? reversedData[0].close : null;
 
-  useEffect(() => {
-    console.log("주식데이터터ㅓㅌ터터터", reversedData);
-  }, [reversedData]);
-
-  const chartData = {
-    labels: reversedData.map((data: any) => data.datetime),
-    datasets: [
-      {
-        label: "Close Price",
-        data: reversedData.map((data: any) => parseFloat(data.close)),
-        fill: false,
-        borderColor: "#8884d8",
-        tension: 0.1,
-      },
-      {
-        label: "Open Price",
-        data: reversedData.map((data: any) => parseFloat(data.open)),
-        fill: false,
-        borderColor: "#82ca9d",
-        tension: 0.1,
-      },
-      {
-        label: "High Price",
-        data: reversedData.map((data: any) => parseFloat(data.high)),
-        fill: false,
-        borderColor: "#ff7300",
-        tension: 0.1,
-      },
-      {
-        label: "Low Price",
-        data: reversedData.map((data: any) => parseFloat(data.low)),
-        fill: false,
-        borderColor: "#ff0000",
-        tension: 0.1,
-      },
-    ],
+  const handleSearch = () => {
+    setSearchSymbol(stockSymbolData.toUpperCase());
   };
 
-  const options: any = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        text: "Stock Prices",
-      },
-      tooltip: {
-        mode: "index",
-        intersect: false,
-        callbacks: {
-          label: function (tooltipItem: any) {
-            const label = tooltipItem.dataset.label || "";
-            const value = tooltipItem.raw;
-            return `${label}: $${value.toFixed(2)}`;
-          },
-          title: function (tooltipItem: any) {
-            return `Date: ${tooltipItem[0].label}`;
-          },
-        },
-      },
-    },
-    scales: {
-      x: {
-        type: "category", // X축은 카테고리 형식
-      },
-      y: {
-        beginAtZero: false, // Y축 0부터 시작하지 않음
-      },
-    },
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
@@ -143,22 +83,31 @@ const StockChart = () => {
         Stock Data Chart
       </h1>
 
-      <input
-        type="text"
-        value={stockSymbol}
-        onChange={(e) => setStockSymbol(e.target.value.toUpperCase())}
-        placeholder="주식 심볼을 입력하세요 (예: AAPL)"
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-6"
-      />
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={stockSymbolData}
+          onChange={(e) => setStockSymbolData(e.target.value.toUpperCase())}
+          onKeyDown={handleKeyPress}
+          placeholder="주식 심볼을 입력하세요 (예: AAPL)"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          onClick={handleSearch}
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+        >
+          검색
+        </button>
+      </div>
 
       {currentSymbol && (
-        <div className="text-xl font-semibold mb-4">
+        <div className="text-xl font-semibold mt-4">
           <p>현재 보고 있는 심볼: {currentSymbol}</p>
         </div>
       )}
 
       {currentPrice && (
-        <div className="text-xl font-semibold mb-4 text-green-600">
+        <div className="text-xl font-semibold text-green-600">
           <p>현재가: ${parseFloat(currentPrice).toFixed(2)}</p>
         </div>
       )}
@@ -167,7 +116,60 @@ const StockChart = () => {
       {error && <p className="text-red-500">{error}</p>}
 
       <div className="w-full max-w-2xl mt-6">
-        <Line data={chartData} options={options} />
+        <Line
+          data={{
+            labels: reversedData.map((data) => data.datetime),
+            datasets: [
+              {
+                label: "Close Price",
+                data: reversedData.map((data) => parseFloat(data.close)),
+                fill: false,
+                borderColor: "#8884d8",
+                tension: 0.1,
+              },
+              {
+                label: "Open Price",
+                data: reversedData.map((data) => parseFloat(data.open)),
+                fill: false,
+                borderColor: "#82ca9d",
+                tension: 0.1,
+              },
+              {
+                label: "High Price",
+                data: reversedData.map((data) => parseFloat(data.high)),
+                fill: false,
+                borderColor: "#ff7300",
+                tension: 0.1,
+              },
+              {
+                label: "Low Price",
+                data: reversedData.map((data) => parseFloat(data.low)),
+                fill: false,
+                borderColor: "#ff0000",
+                tension: 0.1,
+              },
+            ],
+          }}
+          options={{
+            responsive: true,
+            plugins: {
+              title: { display: true, text: "Stock Prices" },
+              tooltip: {
+                callbacks: {
+                  label: (tooltipItem) => {
+                    const label = tooltipItem.dataset.label || "";
+                    const value = Number(tooltipItem.raw);
+                    return `${label}: $${value.toFixed(2)}`;
+                  },
+                },
+              },
+            },
+            scales: {
+              x: { type: "category" },
+              y: { beginAtZero: false },
+            },
+          }}
+        />
       </div>
     </div>
   );
