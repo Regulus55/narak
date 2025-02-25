@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import {
@@ -26,6 +26,8 @@ const StockChart = () => {
   const [stockSymbolData, setStockSymbolData] = useState<string>("");
   const [searchSymbol, setSearchSymbol] = useState<string>("");
   const [stockHistory, setStockHistory] = useState<any[]>([]);
+  const [test, setTest] = useState<any[]>([]);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [currentSymbol, setCurrentSymbol] = useState<string>("");
@@ -45,6 +47,7 @@ const StockChart = () => {
 
       if (response.data.status === "ok") {
         setStockHistory(response.data.values);
+        setTest(response.data);
         setCurrentSymbol(response.data.meta.symbol);
       } else {
         setError(
@@ -77,6 +80,38 @@ const StockChart = () => {
     }
   };
 
+  const [stockLogo, setStockLogo] = useState<any | null>();
+
+  const getSingleStockData = useCallback(async (stockSymbolData: string) => {
+    try {
+      const API_KEY = process.env.REACT_APP_FINNHUB_API_KEY;
+      const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${stockSymbolData}&token=${API_KEY}`;
+      const response = await axios.get(url);
+
+      console.log(response);
+      if (response.data.dp === null) {
+        setStockLogo(null);
+      } else if (response.status === 200) {
+        setStockLogo(response.data);
+      }
+    } catch (error: any) {
+      console.log(error.response.data.error);
+    }
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (stockSymbolData) {
+        getSingleStockData(stockSymbolData);
+      }
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, [stockSymbolData, getSingleStockData]);
+
+  useEffect(() => {
+    console.log("datas 의데이터dddddd", stockLogo);
+    console.log("dddddd", test);
+  }, [stockLogo, test]);
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
@@ -102,6 +137,7 @@ const StockChart = () => {
 
       {currentSymbol && (
         <div className="text-xl font-semibold mt-4">
+          <img src={stockLogo} alt="" className="w-12 h-12" />
           <p>현재 보고 있는 심볼: {currentSymbol}</p>
         </div>
       )}
