@@ -11,6 +11,7 @@ import Login from "./Auth/Login";
 import Home from "./Home";
 import NotFound from "./NotFound";
 import Datas from "./Datas";
+import StockTest from "./StockTest";
 import QuotesList from "./QuotesList";
 import Settings from "./Settings";
 import News from "./News";
@@ -21,6 +22,7 @@ export {
   NotFound,
   Home,
   Datas,
+  StockTest,
   Register,
   Login,
   Profile,

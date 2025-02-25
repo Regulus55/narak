@@ -16,6 +16,7 @@ const Datas = () => {
 
   const [stockSearchInput, setStockSearchInput] = useState<string>("");
   const [singleStockData, setSingleStockData] = useState<any | null>();
+  const [stockNameData, setStockNameData] = useState<any | null>();
   const [stockDataError, setStockDataError] = useState<string | null>(null);
 
   const getSingleStockData = useCallback(async (stockSearchInput: string) => {
@@ -23,15 +24,20 @@ const Datas = () => {
       const API_KEY = process.env.REACT_APP_FINNHUB_API_KEY;
       const url = `https://finnhub.io/api/v1/quote?symbol=${stockSearchInput}&token=${API_KEY}`;
       const response = await axios.get<StockData>(url);
+
+      const nameUrl = `https://finnhub.io/api/v1/stock/profile2?symbol=${stockSearchInput}&token=${API_KEY}`;
+      const nameResponse = await axios.get(nameUrl);
+
       console.log(response);
       if (response.data.dp === null) {
         setSingleStockData(null);
+        setStockNameData(null);
         setStockDataError("주식이름을 다시한번 확인해봐요");
       } else if (response.status === 200) {
         setSingleStockData(response.data);
+        setStockNameData(nameResponse.data);
         setStockDataError(null);
       }
-      console.log("받아옴");
     } catch (error: any) {
       setSingleStockData(null);
       setStockDataError(
@@ -40,6 +46,10 @@ const Datas = () => {
       console.log(error.response.data.error);
     }
   }, []);
+
+  useEffect(() => {
+    console.log("다타스읭다다다다다타타타타타", stockNameData);
+  }, [stockNameData]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -62,7 +72,6 @@ const Datas = () => {
             e.preventDefault();
             getSingleStockData(stockSearchInput);
           }}
-
           className="space-y-4"
         >
           <div>
@@ -90,7 +99,7 @@ const Datas = () => {
         {singleStockData && (
           <div className="mt-6">
             <h3 className="text-xl font-semibold text-gray-700 mb-4">
-              Stock Data for {stockSearchInput}:
+              Stock Data for {stockNameData.ticker}:
             </h3>
             <div className="space-y-2">
               <p className="text-gray-600">
@@ -112,6 +121,9 @@ const Datas = () => {
               <p className="text-gray-600">
                 <span className="font-bold">Previous Close:</span> $
                 {singleStockData.pc}
+              </p>
+              <p>
+                <img src={stockNameData.logo} alt="" />
               </p>
             </div>
           </div>

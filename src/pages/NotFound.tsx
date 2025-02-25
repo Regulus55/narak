@@ -61,7 +61,7 @@ const NotFound = () => {
       <div
         className={`
           text-gray-100 font-bold bg-mainBlue rounded-full hover:cursor-pointer
-          text-2xl px-12 py-2 mt-12
+          text-2xl px-12 py-2 mt-24
           sm:text-3xl sm:px-16 sm:py-3 sm:mt-16 
           md:text-3xl md:px-20 md:py-4 md:mt-20 
           lg:text-4xl lg:py-4 lg:px-24
