@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -13,8 +12,8 @@ import {
   Legend,
 } from "chart.js";
 import { FormInput } from "../../components/common";
-import useSearchStockLogo from "../../hooks/Stock/useSearchStockLogo";
-import useSearchStockPrice from "../../hooks/Stock/useSearchStockPrice";
+import useSearchStockFinhub from "../../hooks/Stock/useSearchStockFinhub";
+import useSearchStockTwelve from "../../hooks/Stock/useSearchStockTwelve";
 
 ChartJS.register(
   CategoryScale,
@@ -38,11 +37,6 @@ interface StockData {
   low: string;
 }
 
-interface PriceData {
-  symbol: string;
-  priceHistory: StockData[];
-}
-
 const StockChart = () => {
   const {
     register,
@@ -60,8 +54,8 @@ const StockChart = () => {
     setSearchInput(searchInput);
   };
 
-  const { data: LogoData, isLoading } = useSearchStockLogo(searchInput); // 주식 로고 데이터
-  const { data: PriceData } = useSearchStockPrice(searchInput); // 주식 가격 데이터
+  const { data: LogoData, isLoading } = useSearchStockFinhub(searchInput); // 주식 로고 데이터
+  const { data: PriceData } = useSearchStockTwelve(searchInput); // 주식 가격 데이터
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
@@ -94,7 +88,7 @@ const StockChart = () => {
           <p> {PriceData?.symbol}</p>
         </div>
       )}
-      {console.log("111", LogoData?.currentPrice)}
+
       {LogoData?.currentPrice && (
         <div className="text-xl font-semibold text-green-600">
           <p>현재가: ${parseFloat(LogoData?.currentPrice).toFixed(2)}</p>
