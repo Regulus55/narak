@@ -48,6 +48,9 @@ const SideNavbar: React.FC = () => {
             </li>
           ) : null
         )}
+        <li onClick={() => navigate("/datas")}>Finhub Datas</li>
+        <li onClick={() => navigate("/stock/test")}>stock test</li>
+        <li onClick={() => navigate("/twelvedata")}>Twelve Data</li>
       </ul>
     </div>
   );

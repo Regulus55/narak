@@ -13,8 +13,10 @@ import {
   News,
   Ranking,
   Chat,
+  StockTest,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
+import TwelveData from "./pages/Stock/TwelveData";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "/datas",
         element: <Datas />,
+      },
+      {
+        path: "/stock/test",
+        element: <StockTest />,
+      },
+      {
+        path: "/twelvedata",
+        element: <TwelveData />,
       },
       {
         path: "/settings",

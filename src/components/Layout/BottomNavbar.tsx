@@ -11,6 +11,7 @@ const BottomNavbar = () => {
       <div className="flex justify-between text-white  h-full mx-2">
         {BottomNavIcons.map(({ Icon, text, path, onClick }, index) => (
           <div
+            key={index}
             className=" flex flex-col items-center justify-center w-full h-full active:scale-110     hover:cursor-pointer"
             onClick={() => (path ? navigate(path) : onClick?.())}
           >

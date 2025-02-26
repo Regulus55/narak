@@ -93,15 +93,15 @@ const ProfileDropdown = ({ username }: DropdownProps) => {
               </div>
               <div
                 className="flex text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
-                onClick={() => console.log("LOCKEDDDD")}
+                onClick={() => navigate("/lock")}
               >
                 <BiLockOpenAlt className="h-4 w-4 mr-2" />
                 화면 잠금
               </div>
             </div>
-
+            <div className="border-t mt-2" />
             <div
-              className="flex text-gray-700 block px-4 py-4 text-sm hover:bg-gray-100 border-t"
+              className="flex text-gray-700 block px-4 py-2 my-2 text-sm rounded-lg hover:bg-gray-100 "
               onClick={handleLogout}
             >
               <FiPower className="h-4 w-4 mr-2 hover:bg-gray-100" />
