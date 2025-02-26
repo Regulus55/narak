@@ -12,8 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { FormInput } from "../components/common";
-import useSearchStockLogo from "../hooks/Stock/useSearchStockLogo";
+import { FormInput } from "../../components/common";
+import useSearchStockLogo from "../../hooks/Stock/useSearchStockLogo";
 
 ChartJS.register(
   CategoryScale,
@@ -33,20 +33,20 @@ const StockChart = () => {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm<searchStockInput>({
     defaultValues: {
       searchInput: "",
     },
   });
-  const searchInput = watch("searchInput");
+  const [searchInput, setSearchInput] = useState<string>("");
 
+  // 주식 로고 데이터
   const { data: LogoData, isLoading } = useSearchStockLogo(searchInput);
-
-  const searchStockLogoHandler = (searchInput: searchStockInput) => {
-    console.log("hook form test", searchInput);
-    console.log("받은로그데이타타타타", LogoData);
+  const searchStockLogoHandler = (userInput: searchStockInput) => {
+    const { searchInput } = userInput;
+    setSearchInput(searchInput);
   };
 
   const [stockSymbolData, setStockSymbolData] = useState<string>("");
@@ -92,8 +92,6 @@ const StockChart = () => {
       fetchStockData(searchSymbol);
     }
   }, [searchSymbol]);
-
-  console.log("쿼리 로고데이타타타타", LogoData);
 
   const reversedData = [...stockHistory].reverse();
   const currentPrice = reversedData.length > 0 ? reversedData[0].close : null;
@@ -182,9 +180,11 @@ const StockChart = () => {
         </button>
       </form>
 
+      <img src={LogoData} alt="" className="w-12 h-12" />
+
       {currentSymbol && (
         <div className="text-xl font-semibold mt-4">
-          <img src={logoData} alt="" className="w-12 h-12" />
+          <img src={LogoData} alt="" className="w-12 h-12" />
           <p>현재 보고 있는 심볼: {currentSymbol}</p>
         </div>
       )}

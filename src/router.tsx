@@ -16,7 +16,7 @@ import {
   StockTest,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
-import TwelveData from "./pages/TwelveData";
+import TwelveData from "./pages/Stock/TwelveData";
 
 const router = createBrowserRouter([
   {

@@ -10,8 +10,8 @@ import Login from "./Auth/Login";
 // Public
 import Home from "./Home";
 import NotFound from "./NotFound";
-import Datas from "./Datas";
-import StockTest from "./StockTest";
+import Datas from "./Stock/Datas";
+import StockTest from "./Stock/StockTest";
 import QuotesList from "./QuotesList";
 import Settings from "./Settings";
 import News from "./News";
