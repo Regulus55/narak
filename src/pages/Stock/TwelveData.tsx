@@ -14,6 +14,7 @@ import {
 } from "chart.js";
 import { FormInput } from "../../components/common";
 import useSearchStockLogo from "../../hooks/Stock/useSearchStockLogo";
+import useSearchStockPrice from "../../hooks/Stock/useSearchStockPrice";
 
 ChartJS.register(
   CategoryScale,
@@ -29,140 +30,46 @@ interface searchStockInput {
   searchInput: string;
 }
 
+interface StockData {
+  datetime: string;
+  close: string;
+  open: string;
+  high: string;
+  low: string;
+}
+
+interface PriceData {
+  symbol: string;
+  priceHistory: StockData[];
+}
+
 const StockChart = () => {
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm<searchStockInput>({
     defaultValues: {
       searchInput: "",
     },
   });
-  const [searchInput, setSearchInput] = useState<string>("");
 
-  // 주식 로고 데이터
-  const { data: LogoData, isLoading } = useSearchStockLogo(searchInput);
-  const searchStockLogoHandler = (userInput: searchStockInput) => {
+  const [searchInput, setSearchInput] = useState<string>("");
+  const searchStockHandler = (userInput: searchStockInput) => {
     const { searchInput } = userInput;
     setSearchInput(searchInput);
   };
 
-  const [stockSymbolData, setStockSymbolData] = useState<string>("");
-  const [searchSymbol, setSearchSymbol] = useState<string>("");
-  const [stockHistory, setStockHistory] = useState<any[]>([]);
-  const [priceData, setPriceData] = useState<any[]>([]);
+  const { data: LogoData, isLoading } = useSearchStockLogo(searchInput); // 주식 로고 데이터
+  const { data: PriceData } = useSearchStockPrice(searchInput); // 주식 가격 데이터
 
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [currentSymbol, setCurrentSymbol] = useState<string>("");
-
-  const API_KEY = "08b39f29ee2b42f7a501fbf451b7a7d5";
-
-  const fetchStockData = async (searchInput: string) => {
-    if (!searchInput) return;
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await axios.get(
-        `https://api.twelvedata.com/time_series?symbol=${searchInput}&interval=1day&apikey=${API_KEY}`
-      );
-
-      if (response.data.status === "ok") {
-        setStockHistory(response.data.values);
-        setPriceData(response.data);
-        setCurrentSymbol(response.data.meta.searchInput);
-      } else {
-        setError(
-          "데이터를 가져오는 데 실패했습니다. 주식 심볼을 확인해주세요."
-        );
-      }
-    } catch (err) {
-      setError("데이터를 가져오는 데 실패했습니다. 나중에 다시 시도해주세요.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (searchSymbol) {
-      fetchStockData(searchSymbol);
-    }
-  }, [searchSymbol]);
-
-  const reversedData = [...stockHistory].reverse();
-  const currentPrice = reversedData.length > 0 ? reversedData[0].close : null;
-
-  const handleSearch = () => {
-    setSearchSymbol(stockSymbolData.toUpperCase());
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
-
-  const [logoData, setLogoData] = useState<any | null>();
-
-  // const getSingleStockData = useCallback(async (stockSymbolData: string) => {
-  //   try {
-  //     const API_KEY = process.env.REACT_APP_FINNHUB_API_KEY;
-  //     const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${stockSymbolData}&token=${API_KEY}`;
-  //     const response = await axios.get(url);
-
-  //     console.log(response);
-  //     if (response.data.dp === null) {
-  //       setLogoData(null);
-  //     } else if (response.status === 200) {
-  //       setLogoData(response.data.logo);
-  //     }
-  //   } catch (error: any) {
-  //     console.log(error.response.data.error);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     if (stockSymbolData) {
-  //       getSingleStockData(stockSymbolData);
-  //     }
-  //   }, 5000);
-  //   return () => clearInterval(intervalId);
-  // }, [stockSymbolData, getSingleStockData]);
-
-  // const searchStockHandler = async (userInput:searchStockInput) => {
-  //   try{
-
-  //   }
-  // }
-
-  useEffect(() => {
-    console.log("로고데이타타타타타", logoData);
-    console.log("프라이스데이타타타타", priceData);
-  }, [logoData, priceData]);
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
         Stock Data Chart
       </h1>
 
-      <form
-        onSubmit={handleSubmit(searchStockLogoHandler)}
-        className="flex gap-2"
-      >
-        {/* <input
-          id="stockSymbol"
-          type="text"
-          value={stockSymbolData}
-          onChange={(e) => setStockSymbolData(e.target.value.toUpperCase())}
-          onKeyDown={handleKeyPress}
-          placeholder="주식 심볼을 입력하세요 (예: AAPL)"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-        /> */}
+      <form onSubmit={handleSubmit(searchStockHandler)} className="flex gap-2">
         <FormInput
           id="stockSymbol"
           type="text"
@@ -180,53 +87,59 @@ const StockChart = () => {
         </button>
       </form>
 
-      <img src={LogoData} alt="" className="w-12 h-12" />
+      <img src={LogoData?.logo} alt="" className="w-12 h-12" />
 
-      {currentSymbol && (
+      {PriceData?.symbol && (
         <div className="text-xl font-semibold mt-4">
-          <img src={LogoData} alt="" className="w-12 h-12" />
-          <p>현재 보고 있는 심볼: {currentSymbol}</p>
+          <p> {PriceData?.symbol}</p>
         </div>
       )}
-
-      {currentPrice && (
+      {console.log("111", LogoData?.currentPrice)}
+      {LogoData?.currentPrice && (
         <div className="text-xl font-semibold text-green-600">
-          <p>현재가: ${parseFloat(currentPrice).toFixed(2)}</p>
+          <p>현재가: ${parseFloat(LogoData?.currentPrice).toFixed(2)}</p>
         </div>
       )}
-
-      {loading && <p className="text-blue-500">데이터를 로딩 중...</p>}
-      {error && <p className="text-red-500">{error}</p>}
 
       <div className="w-full max-w-2xl mt-6">
         <Line
           data={{
-            labels: reversedData.map((data) => data.datetime),
+            labels: PriceData?.priceHistory?.map(
+              (data: StockData) => data.datetime
+            ),
             datasets: [
               {
                 label: "Close Price",
-                data: reversedData.map((data) => parseFloat(data.close)),
+                data: PriceData?.priceHistory?.map((data: StockData) =>
+                  parseFloat(data.close)
+                ),
                 fill: false,
                 borderColor: "#8884d8",
                 tension: 0.1,
               },
               {
                 label: "Open Price",
-                data: reversedData.map((data) => parseFloat(data.open)),
+                data: PriceData?.priceHistory?.map((data: StockData) =>
+                  parseFloat(data.open)
+                ),
                 fill: false,
                 borderColor: "#82ca9d",
                 tension: 0.1,
               },
               {
                 label: "High Price",
-                data: reversedData.map((data) => parseFloat(data.high)),
+                data: PriceData?.priceHistory?.map((data: StockData) =>
+                  parseFloat(data.high)
+                ),
                 fill: false,
                 borderColor: "#ff7300",
                 tension: 0.1,
               },
               {
                 label: "Low Price",
-                data: reversedData.map((data) => parseFloat(data.low)),
+                data: PriceData?.priceHistory?.map((data: StockData) =>
+                  parseFloat(data.low)
+                ),
                 fill: false,
                 borderColor: "#ff0000",
                 tension: 0.1,
