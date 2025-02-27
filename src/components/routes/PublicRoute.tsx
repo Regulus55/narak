@@ -14,7 +14,7 @@ const PublicRoute: React.FC = () => {
     );
   }
 
-  return user ? <Navigate to="/profile" replace /> : <Outlet />;
+  return user ? <Navigate to="/stocks" replace /> : <Outlet />;
 };
 
 export default PublicRoute;

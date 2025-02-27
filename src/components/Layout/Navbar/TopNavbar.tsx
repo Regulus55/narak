@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useSideNav } from "../../context/SideNavProvider";
-import { useUser } from "../../context/UserContext";
-import ProfileDropdown from "./ProfileDropdown";
-import GuestDropdown from "./GuestDropdown";
+import { useSideNav } from "../../../context/SideNavProvider";
+import { useUser } from "../../../context/UserContext";
+import ProfileDropdown from "../Dropdown/ProfileDropdown";
+import GuestDropdown from "../Dropdown/GuestDropdown";
 
 // react-icons
 import { HiOutlineMenu } from "react-icons/hi";
-import { GrSearch } from "react-icons/gr";
 
 const TopNavbar = () => {
   const navigate = useNavigate();
@@ -14,15 +13,6 @@ const TopNavbar = () => {
   const { user } = useUser();
 
   const username = user?.displayName || "사용자";
-
-  const LogButton = ({ text, path }: { text: string; path: string }) => (
-    <button
-      className="py-2 active:scale-105 hidden md:block"
-      onClick={() => navigate(path)}
-    >
-      {text}
-    </button>
-  );
 
   return (
     <nav className="bg-mainBlue fixed top-0 left-0 w-full h-16 z-50">
@@ -51,13 +41,6 @@ const TopNavbar = () => {
         </div>
 
         <div id="right" className="flex items-center space-x-4 ">
-          {/* <GrSearch
-            onClick={() => navigate("/datas")}
-            className="w-6 h-6 active:scale-110"
-            role="button"
-          /> 
-            홈 페이지 안에서 쓰기
-          */}
           {user ? (
             <ProfileDropdown username={username} />
           ) : (

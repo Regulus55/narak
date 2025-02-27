@@ -6,6 +6,8 @@ interface FormInputProps {
   label: string;
   register: any;
   errorMessage?: string;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 const FormInput: React.FC<FormInputProps> = ({

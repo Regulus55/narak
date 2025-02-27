@@ -14,6 +14,7 @@ import {
   Ranking,
   Chat,
   StockTest,
+  SearchingPage,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
 import TwelveData from "./pages/Stock/TwelveData";
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/datas",
         element: <Datas />,
+      },
+      {
+        path: "/searching/page",
+        element: <SearchingPage />,
       },
       {
         path: "/stock/test",

@@ -2,51 +2,66 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+// react icons
+import { GrSearch } from "react-icons/gr";
+import { MainExplain } from "../data/HomeData";
+import { useForm } from "react-hook-form";
+
+interface searchStockInput {
+  searchInput: string;
+}
+
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const auth = getAuth();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    // 사용자의 로그인 상태를 실시간으로 확인
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-        navigate("/profile");
-      } else {
-        setIsLoggedIn(false);
-      }
-    });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      searchInput: "",
+    },
+  });
 
-    return () => unsubscribe();
-  }, [auth, navigate]);
+  const searchInput = watch("searchInput");
 
-  if (isLoggedIn === null) {
-    return null;
-  }
+  const searchStockHandler = (userInput: searchStockInput) => {
+    const { searchInput } = userInput;
+    console.log("우와", searchInput);
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-lg w-full max-w-4xl">
-        {!isLoggedIn ? (
-          <>
-            <h2 className="text-3xl font-bold text-center mb-6">
-              Welcome to Our Website!
-            </h2>
-            <p className="text-lg text-gray-700">
-              Here is a brief introduction to our site. We offer a variety of
-              amazing products and services that you can explore. Enjoy your
-              time browsing!
-            </p>
-            <p className="text-lg text-gray-700 mt-4">
-              You can log in or sign up to access your account and manage your
-              orders.
-            </p>
-          </>
-        ) : (
-          <></>
+    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">
+      <form
+        onSubmit={handleSubmit(searchStockHandler)}
+        className="flex h-12 w-full max-w-5xl mt-4 rounded-lg border-2 border-gray-300 bg-white relative "
+      >
+        <input
+          id="stockSymbol"
+          type="text"
+          {...register("searchInput", {
+            required: "주식 이름을 입력하세요",
+          })}
+          className="w-full p-2 rounded-lg  relative"
+        />
+        <button
+          type="submit"
+          className="w-10 h-10 p-1 right-0.5 top-0.5 absolute"
+        >
+          <GrSearch className="w-full h-full" />
+        </button>
+        {errors.searchInput && (
+          <span className="text-red-500 left-2 top-12 absolute">
+            {errors.searchInput.message}
+          </span>
         )}
-      </div>
+      </form>
+
+      {/*  */}
+
+      <MainExplain />
     </div>
   );
 };

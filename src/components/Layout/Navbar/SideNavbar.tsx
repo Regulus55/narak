@@ -1,27 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { SideNavIcons } from "../../data/layout/navbarData";
-import { useSideNav } from "../../context/SideNavProvider";
-import { useUser } from "../../context/UserContext";
-import styled from "styled-components";
-
-interface SidebarWrapperProps {
-  isSideOpen: boolean;
-}
-
-const SidebarWrapper = styled.div<SidebarWrapperProps>`
-  position: fixed;
-  top: 4rem;
-  left: 0;
-  height: 100%;
-  background-color: #f3f4f6; /* bg-gray-100 */
-  border-right: 4px solid #d1d5db;
-  border-left: 4px solid #d1d5db;
-  width: 180px;
-  z-index: 30;
-  transition: transform 0.3s ease-in-out;
-  transform: ${({ isSideOpen }) =>
-    isSideOpen ? "translateX(168%)" : "translateX(78%)"};
-`;
+import { SideNavIcons } from "../../../data/layout/navbarData";
+import { useSideNav } from "../../../context/SideNavProvider";
+import { useUser } from "../../../context/UserContext";
 
 const SideNavbar: React.FC = () => {
   const navigate = useNavigate();
