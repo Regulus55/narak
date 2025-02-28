@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { GrSearch } from "react-icons/gr";
 import { MainExplain } from "../data/HomeData";
 import { useForm } from "react-hook-form";
+import SearchingDropdown from "../components/Layout/Dropdown/SearchingDropdown";
 
 interface searchStockInput {
   searchInput: string;
@@ -24,27 +25,46 @@ const Home: React.FC = () => {
       searchInput: "",
     },
   });
-
   const searchInput = watch("searchInput");
 
+  // 검색창 열려있는지
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // 검색 핸들러
   const searchStockHandler = (userInput: searchStockInput) => {
     const { searchInput } = userInput;
     console.log("우와", searchInput);
+    // navigate(`/stock/${searchInput}`);
   };
+
+  // 실시간으로 검색함
+  useEffect(() => {
+    if (searchInput) {
+      searchStockHandler({ searchInput });
+    }
+  }, [searchInput]);
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">
       <form
         onSubmit={handleSubmit(searchStockHandler)}
-        className="flex h-12 w-full max-w-5xl mt-4 rounded-lg border-2 border-gray-300 bg-white relative "
+        className={`flex w-full max-w-5xl h-12 mt-4 border-2 shadow-xl border-gray-300 bg-white relative
+          ${isDropdownOpen ? "rounded-t-lg border-gray-500" : "rounded-lg"}
+          `}
       >
         <input
           id="stockSymbol"
           type="text"
+          placeholder="주식 이름 검색"
           {...register("searchInput", {
             required: "주식 이름을 입력하세요",
           })}
-          className="w-full p-2 rounded-lg  relative"
+          className={`w-full p-2 relative outline-none pl-6
+              ${isDropdownOpen ? "rounded-t-lg" : "rounded-lg"}
+            `}
+          onFocus={() => setIsDropdownOpen(true)}
+          onBlur={() => setIsDropdownOpen(false)}
+          autoComplete="off"
         />
         <button
           type="submit"
@@ -57,9 +77,8 @@ const Home: React.FC = () => {
             {errors.searchInput.message}
           </span>
         )}
+        {isDropdownOpen ? <SearchingDropdown /> : null}
       </form>
-
-      {/*  */}
 
       <MainExplain />
     </div>
