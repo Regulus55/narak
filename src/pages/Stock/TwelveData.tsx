@@ -12,8 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { FormInput } from "../../components/common";
-import useSearchStockFinhub from "../../hooks/Stock/useSearchStockFinhub";
-import useSearchStockTwelve from "../../hooks/Stock/useSearchStockTwelve";
+import useSearchStockData from "../../hooks/Stock/useSearchStockData";
 
 ChartJS.register(
   CategoryScale,
@@ -54,8 +53,8 @@ const StockChart = () => {
     setSearchInput(searchInput);
   };
 
-  const { data: LogoData, isLoading } = useSearchStockFinhub(searchInput); // 주식 로고 데이터
-  const { data: PriceData } = useSearchStockTwelve(searchInput); // 주식 가격 데이터
+  const { logo, currentPrice, symbol, priceHistory } =
+    useSearchStockData(searchInput);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
@@ -81,30 +80,28 @@ const StockChart = () => {
         </button>
       </form>
 
-      <img src={LogoData?.logo} alt="" className="w-12 h-12" />
+      <img src={logo} alt="" className="w-12 h-12" />
 
-      {PriceData?.symbol && (
+      {symbol && (
         <div className="text-xl font-semibold mt-4">
-          <p> {PriceData?.symbol}</p>
+          <p> {symbol}</p>
         </div>
       )}
 
-      {LogoData?.currentPrice && (
+      {currentPrice && (
         <div className="text-xl font-semibold text-green-600">
-          <p>현재가: ${parseFloat(LogoData?.currentPrice).toFixed(2)}</p>
+          <p>현재가: ${parseFloat(currentPrice).toFixed(2)}</p>
         </div>
       )}
 
       <div className="w-full max-w-2xl mt-6">
         <Line
           data={{
-            labels: PriceData?.priceHistory?.map(
-              (data: StockData) => data.datetime
-            ),
+            labels: priceHistory?.map((data: StockData) => data.datetime),
             datasets: [
               {
                 label: "Close Price",
-                data: PriceData?.priceHistory?.map((data: StockData) =>
+                data: priceHistory?.map((data: StockData) =>
                   parseFloat(data.close)
                 ),
                 fill: false,
@@ -113,7 +110,7 @@ const StockChart = () => {
               },
               {
                 label: "Open Price",
-                data: PriceData?.priceHistory?.map((data: StockData) =>
+                data: priceHistory?.map((data: StockData) =>
                   parseFloat(data.open)
                 ),
                 fill: false,
@@ -122,7 +119,7 @@ const StockChart = () => {
               },
               {
                 label: "High Price",
-                data: PriceData?.priceHistory?.map((data: StockData) =>
+                data: priceHistory?.map((data: StockData) =>
                   parseFloat(data.high)
                 ),
                 fill: false,
@@ -131,7 +128,7 @@ const StockChart = () => {
               },
               {
                 label: "Low Price",
-                data: PriceData?.priceHistory?.map((data: StockData) =>
+                data: priceHistory?.map((data: StockData) =>
                   parseFloat(data.low)
                 ),
                 fill: false,

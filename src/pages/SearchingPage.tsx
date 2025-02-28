@@ -11,8 +11,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import useSearchStockFinhub from "../hooks/Stock/useSearchStockFinhub";
-import useSearchStockTwelve from "../hooks/Stock/useSearchStockTwelve";
+import useSearchStockFinhub from "../hooks/Stock/useFinhubData";
+import useSearchStockTwelve from "../hooks/Stock/useTwelveData";
 import { FormInput } from "../components/common";
 import { useNavigate } from "react-router-dom";
 
