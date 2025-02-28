@@ -12,7 +12,6 @@ const useFinhubData = (searchInput: string) => {
       axios.get(logoUrl),
       axios.get(quoteUrl),
     ]);
-
     return {
       logo: logoResponse.data.logo,
       currentPrice: quoteResponse.data.c,

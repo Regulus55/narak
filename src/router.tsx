@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useParams } from "react-router-dom";
 import App from "./App";
 import {
   NotFound,
@@ -15,6 +15,7 @@ import {
   Chat,
   StockTest,
   SearchingPage,
+  StockDetail,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
 import TwelveData from "./pages/Stock/TwelveData";
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         index: true,
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/stock/:id",
+        element: <StockDetail />,
       },
       {
         path: "/datas",

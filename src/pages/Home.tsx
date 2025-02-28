@@ -7,6 +7,7 @@ import { GrSearch } from "react-icons/gr";
 import { MainExplain } from "../data/HomeData";
 import { useForm } from "react-hook-form";
 import SearchingDropdown from "../components/Layout/Dropdown/SearchingDropdown";
+import useSearchStockData from "../hooks/Stock/useSearchStockData";
 
 interface searchStockInput {
   searchInput: string;
@@ -33,16 +34,15 @@ const Home: React.FC = () => {
   // 검색 핸들러
   const searchStockHandler = (userInput: searchStockInput) => {
     const { searchInput } = userInput;
-    console.log("우와", searchInput);
-    // navigate(`/stock/${searchInput}`);
+    navigate(`/stock/${searchInput}`);
   };
 
   // 실시간으로 검색함
-  useEffect(() => {
-    if (searchInput) {
-      searchStockHandler({ searchInput });
-    }
-  }, [searchInput]);
+  // useEffect(() => {
+  //   if (searchInput) {
+  //     searchStockHandler({ searchInput });
+  //   }
+  // }, [searchInput]);
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">

@@ -11,6 +11,7 @@ import Login from "./Auth/Login";
 import Home from "./Home";
 import NotFound from "./NotFound";
 import SearchingPage from "./SearchingPage";
+import StockDetail from "./Stock/StockDetail";
 import Datas from "./Stock/Datas";
 import StockTest from "./Stock/StockTest";
 import QuotesList from "./QuotesList";
@@ -23,6 +24,7 @@ export {
   NotFound,
   Home,
   SearchingPage,
+  StockDetail,
   Datas,
   StockTest,
   Register,
