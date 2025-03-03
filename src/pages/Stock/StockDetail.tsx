@@ -3,10 +3,6 @@ import { useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import useSearchStockData from "../../hooks/Stock/useSearchStockData";
 
-interface searchStockInput {
-  searchInput: string;
-}
-
 interface StockData {
   datetime: string;
   close: string;
@@ -18,9 +14,18 @@ interface StockData {
 const StockDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { logo, symbol, type, priceHistory, currentPrice } = useSearchStockData(
-    id || ""
+  const { logo, symbol, type, priceHistory, currentPrice, status } =
+    useSearchStockData(id || "");
+
+  // 검색한 주식을 로컬스토리지로
+  let visitedPages = new Set(
+    JSON.parse(localStorage.getItem("visitedPages") ?? "[]") as string[]
   );
+  if (id && status === "ok") {
+    visitedPages.delete(id);
+    visitedPages.add(id);
+    localStorage.setItem("visitedPages", JSON.stringify([...visitedPages]));
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">
@@ -28,7 +33,9 @@ const StockDetail: React.FC = () => {
       <p className="mt-4">검색한 주식: {id}</p>
 
       <img
-        src={type !== "Common Stock" ? "/images/etf.png" : logo}
+        src={
+          type !== "Common Stock" && status === "ok" ? "/images/etf.png" : logo
+        }
         alt=""
         className="w-12 h-12"
       />

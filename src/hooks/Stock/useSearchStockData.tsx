@@ -15,6 +15,7 @@ const useSearchStockData = (searchInput: string) => {
     symbol: TwelveData?.symbol, // 주식 이름
     priceHistory: TwelveData?.priceHistory, // 이전 가격
     type: TwelveData?.type,
+    status: TwelveData?.status, //  있는 주식인지
   };
 };
 

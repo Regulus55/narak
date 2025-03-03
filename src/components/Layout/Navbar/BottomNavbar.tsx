@@ -1,5 +1,3 @@
-import React from "react";
-import { AiOutlineHome } from "react-icons/ai";
 import { BottomNavIcons, SideNavIcons } from "../../../data/layout/navbarData";
 import { useNavigate } from "react-router-dom";
 

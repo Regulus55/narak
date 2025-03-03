@@ -12,6 +12,10 @@ const useFinhubData = (searchInput: string) => {
       axios.get(logoUrl),
       axios.get(quoteUrl),
     ]);
+
+    console.log("핀허브 logo 리스폰스", logoResponse);
+    console.log("핀허브 quote 리스폰스", quoteResponse);
+
     return {
       logo: logoResponse.data.logo,
       currentPrice: quoteResponse.data.c,
