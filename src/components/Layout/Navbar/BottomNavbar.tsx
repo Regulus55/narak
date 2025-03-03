@@ -10,7 +10,12 @@ const BottomNavbar = () => {
         {BottomNavIcons.map(({ Icon, text, path, onClick }, index) => (
           <div
             key={index}
-            className=" flex flex-col items-center justify-center w-full h-full active:scale-110 hover:cursor-pointer"
+            className={`flex flex-col items-center justify-center w-full h-full active:scale-110 hover:cursor-pointer
+              ${
+                window.location.pathname === path
+                  ? "text-blue-600"
+                  : "text-black"
+              }`}
             onClick={() => (path ? navigate(path) : onClick?.())}
           >
             <Icon className="w-7 h-7" />
