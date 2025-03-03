@@ -1,8 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import useSearchStockData from "../../hooks/Stock/useSearchStockData";
+import ExchangeRateDropdown from "../../components/Layout/Dropdown/ExchangeRateDropdown";
 
+// react icons
+import { IoMdArrowRoundBack } from "react-icons/io";
 interface StockData {
   datetime: string;
   close: string;
@@ -12,6 +15,8 @@ interface StockData {
 }
 
 const StockDetail: React.FC = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams<{ id: string }>();
 
   const { logo, symbol, type, priceHistory, currentPrice, status } =
@@ -28,7 +33,15 @@ const StockDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100 bg-white p-6 m-2">
+    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-4">
+      <div className="flex justify-between w-full">
+        <div onClick={() => navigate(-1)}>
+          <IoMdArrowRoundBack className="w-8 h-8 hover:cursor-pointer" />
+        </div>
+        <div className="text-gray-500 border-2 border-gray-500 rounded-full my-auto p-1 hover:cursor-pointer relative">
+          <ExchangeRateDropdown />
+        </div>
+      </div>
       <h1 className="text-2xl font-bold">주식 상세 정보</h1>
       <p className="mt-4">검색한 주식: {id}</p>
 
@@ -51,7 +64,7 @@ const StockDetail: React.FC = () => {
         </div>
       )}
 
-      <div className="w-full max-w-2xl mt-6">
+      <div className="w-full h-full max-w-2xl mt-6">
         <Line
           data={{
             labels: priceHistory?.map((data: StockData) => data.datetime),

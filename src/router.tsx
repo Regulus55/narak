@@ -2,12 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import {
   NotFound,
-  QuotesList,
   Home,
   TotalAssets,
   MyStocks,
   MyBalance,
-  Datas,
   Register,
   Login,
   Profile,
@@ -16,13 +14,15 @@ import {
   News,
   Ranking,
   Chat,
-  StockTest,
-  SearchingPage,
   StockDetail,
   Alert,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
-import TwelveData from "./pages/Stock/TwelveData";
+import TwelveData from "./pages/TESTTEST/TwelveData";
+import QuotesList from "./pages/TESTTEST/QuotesList";
+import SearchingPage from "./pages/TESTTEST/SearchingPage";
+import Datas from "./pages/TESTTEST/Datas";
+import StockChart from "./pages/TESTTEST/StockTest";
 
 const router = createBrowserRouter([
   {
@@ -91,18 +91,6 @@ const router = createBrowserRouter([
         element: <StockDetail />,
       },
       {
-        path: "/datas",
-        element: <Datas />,
-      },
-      {
-        path: "/searching/page",
-        element: <SearchingPage />,
-      },
-      {
-        path: "/stock/test",
-        element: <StockTest />,
-      },
-      {
         path: "/twelvedata",
         element: <TwelveData />,
       },
@@ -118,9 +106,23 @@ const router = createBrowserRouter([
         path: "/ranking",
         element: <Ranking />,
       },
+
+      // 테스트 지워도됨
       {
         path: "/quotes",
         element: <QuotesList />,
+      },
+      {
+        path: "/searching/page",
+        element: <SearchingPage />,
+      },
+      {
+        path: "/datas",
+        element: <Datas />,
+      },
+      {
+        path: "/stock/test",
+        element: <StockChart />,
       },
     ],
   },
