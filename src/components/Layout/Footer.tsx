@@ -15,7 +15,7 @@ const Footer = () => {
 
   return location.pathname.includes("login") ||
     location.pathname.includes("register") ? null : (
-    <footer className="bg-gray-400 pt-20 pb-32 md:pb-16 z-50 relative">
+    <footer className="bg-gray-400 pt-20 pb-32 md:pb-16 z-30 relative">
       <div className="grid  sm:grid-cols-3 max-w-6xl min-w-[300px] mx-auto px-6 sm:px-16 min-h-[250px]">
         <div className="col-span-3 w-full sm:col-span-2 flex flex-col items-between justify-evenly">
           <div className="flex items-center justify-between w-full mb-8 sm:mb-4 sm:w-1/2">

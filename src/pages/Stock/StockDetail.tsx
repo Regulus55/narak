@@ -28,7 +28,7 @@ const StockDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">
+    <div className="min-h-screen flex flex-col items-center bg-gray-100 bg-white p-6 m-2">
       <h1 className="text-2xl font-bold">주식 상세 정보</h1>
       <p className="mt-4">검색한 주식: {id}</p>
 

@@ -50,8 +50,6 @@ const SearchingPage = () => {
   const { data: LogoData, isLoading } = useSearchStockFinhub(searchInput); // 주식 로고 데이터
   const { data: StockData } = useSearchStockTwelve(searchInput); // 주식 가격 데이터
 
-  console.log("asdf", suggestions);
-
   useEffect(() => {
     if (searchInput.trim() !== "") {
       // 주식 검색 결과가 logo와 currentPrice만 있다면, 적절히 수정합니다.

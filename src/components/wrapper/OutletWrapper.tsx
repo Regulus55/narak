@@ -19,9 +19,6 @@ const MainContent = styled.div<MainContentProps>`
   @media (max-width: 768px) {
     // width: ${({ isSideOpen }) => (isSideOpen ? "82%" : "92%")};
     // margin-left: ${({ isSideOpen }) => (isSideOpen ? "18%" : "8%")};
-
-    width: ${({ isSideOpen }) => (isSideOpen ? "90%" : "90%")};
-    margin-left: ${({ isSideOpen }) => (isSideOpen ? "10%" : "10%")};
   }
 `;
 

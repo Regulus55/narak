@@ -1,9 +1,12 @@
-import { createBrowserRouter, useParams } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import {
   NotFound,
   QuotesList,
   Home,
+  TotalAssets,
+  MyStocks,
+  MyBalance,
   Datas,
   Register,
   Login,
@@ -16,6 +19,7 @@ import {
   StockTest,
   SearchingPage,
   StockDetail,
+  Alert,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
 import TwelveData from "./pages/Stock/TwelveData";
@@ -50,12 +54,28 @@ const router = createBrowserRouter([
             element: <Profile />,
           },
           {
-            path: "/profile/edit",
+            path: "/edit-profile",
             element: <EditProfile />,
+          },
+          {
+            path: "/total-assets",
+            element: <TotalAssets />,
+          },
+          {
+            path: "/my-stocks",
+            element: <MyStocks />,
+          },
+          {
+            path: "/my-balance",
+            element: <MyBalance />,
           },
           {
             path: "/chat",
             element: <Chat />,
+          },
+          {
+            path: "/alert",
+            element: <Alert />,
           },
         ],
       },

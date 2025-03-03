@@ -1,7 +1,10 @@
 // Auth
 import Profile from "./Auth/Profile";
 import EditProfile from "./Auth/EditProfile";
-import Chat from "./Auth/Chat";
+import TotalAssets from "./Personal/TotalAssets";
+import MyStocks from "./Personal/MyStocks";
+import MyBalance from "./Personal/MyBalance";
+import Chat from "./Personal/Chat";
 
 // Non Auth
 import Register from "./Auth/Register";
@@ -18,11 +21,15 @@ import QuotesList from "./QuotesList";
 import Settings from "./Settings";
 import News from "./News";
 import Ranking from "./Ranking";
+import Alert from "./Personal/Alert";
 
 export {
   QuotesList,
   NotFound,
   Home,
+  TotalAssets,
+  MyStocks,
+  MyBalance,
   SearchingPage,
   StockDetail,
   Datas,
@@ -35,4 +42,5 @@ export {
   News,
   Ranking,
   Chat,
+  Alert,
 };
