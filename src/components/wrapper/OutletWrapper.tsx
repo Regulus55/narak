@@ -12,11 +12,17 @@ const MainContent = styled.div<MainContentProps>`
   height: 100%;
   background-color: #f3f4f6; /* bg-gray-100 */
   transition: all 0.3s ease-in-out;
+  z-index: 20;
   width: ${({ isSideOpen }) => (isSideOpen ? "100%" : "100%")};
   margin-left: ${({ isSideOpen }) => (isSideOpen ? "0%" : "0%")};
-  z-index: 20;
-  // width: ${({ isSideOpen }) => (isSideOpen ? "82%" : "92%")};
-  // margin-left: ${({ isSideOpen }) => (isSideOpen ? "18%" : "8%")};
+
+  @media (max-width: 768px) {
+    // width: ${({ isSideOpen }) => (isSideOpen ? "82%" : "92%")};
+    // margin-left: ${({ isSideOpen }) => (isSideOpen ? "18%" : "8%")};
+
+    width: ${({ isSideOpen }) => (isSideOpen ? "90%" : "90%")};
+    margin-left: ${({ isSideOpen }) => (isSideOpen ? "10%" : "10%")};
+  }
 `;
 
 const OutletWrapper: React.FC<{ children: React.ReactNode }> = ({

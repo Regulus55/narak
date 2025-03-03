@@ -2,8 +2,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const useSearchStockFinhub = (searchInput: string) => {
-  const getStockLogo = async (query: string) => {
+const useFinhubData = (searchInput: string) => {
+  const getFinhubData = async (query: string) => {
     const API_KEY = process.env.REACT_APP_FINNHUB_API_KEY;
     const logoUrl = `https://finnhub.io/api/v1/stock/profile2?symbol=${query}&token=${API_KEY}`;
     const quoteUrl = `https://finnhub.io/api/v1/quote?symbol=${query}&token=${API_KEY}`;
@@ -13,6 +13,9 @@ const useSearchStockFinhub = (searchInput: string) => {
       axios.get(quoteUrl),
     ]);
 
+    console.log("핀허브 logo 리스폰스", logoResponse);
+    console.log("핀허브 quote 리스폰스", quoteResponse);
+
     return {
       logo: logoResponse.data.logo,
       currentPrice: quoteResponse.data.c,
@@ -20,10 +23,10 @@ const useSearchStockFinhub = (searchInput: string) => {
   };
 
   return useQuery({
-    queryKey: ["StockLogo", searchInput],
-    queryFn: () => getStockLogo(searchInput),
+    queryKey: ["FinhubData", searchInput],
+    queryFn: () => getFinhubData(searchInput),
     enabled: !!searchInput,
   });
 };
 
-export default useSearchStockFinhub;
+export default useFinhubData;

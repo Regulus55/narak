@@ -1,13 +1,11 @@
-import Navbar from "./Navbar";
-import TopNavbar from "./TopNavbar";
-import SideNavbar from "./SideNavbar";
-import BottomNavbar from "./BottomNavbar";
-import ProfileDropdown from "./ProfileDropdown";
-import GuestDropdown from "./GuestDropdown";
+import TopNavbar from "./Navbar/TopNavbar";
+import SideNavbar from "./Navbar/SideNavbar";
+import BottomNavbar from "./Navbar/BottomNavbar";
+import ProfileDropdown from "./Dropdown/ProfileDropdown";
+import GuestDropdown from "./Dropdown/GuestDropdown";
 import Footer from "./Footer";
 
 export {
-  Navbar,
   TopNavbar,
   SideNavbar,
   BottomNavbar,

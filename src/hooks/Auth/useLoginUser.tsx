@@ -27,7 +27,7 @@ const useLoginUser = () => {
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
-      navigate("/profile");
+      navigate("/mystock");
       console.log("로그인데이터", data);
     },
     // onError: (error) => {},

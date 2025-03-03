@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/firebaseConfig";
+import { auth } from "../../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 
 // react-icons
