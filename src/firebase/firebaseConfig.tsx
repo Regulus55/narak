@@ -31,7 +31,7 @@ export const auth = getAuth(app);
 //     console.error("Failed to set persistence for Firebase Auth:", error);
 //   });
 
-console.log("Firebase Initialized:", app);
-console.log("Auth Service:", auth);
+// console.log("Firebase Initialized:", app);
+// console.log("Auth Service:", auth);
 
 export default app;

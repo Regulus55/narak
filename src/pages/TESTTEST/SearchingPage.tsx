@@ -11,9 +11,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import useSearchStockFinhub from "../hooks/Stock/useFinhubData";
-import useSearchStockTwelve from "../hooks/Stock/useTwelveData";
-import { FormInput } from "../components/common";
+import useSearchStockFinhub from "../../hooks/Stock/useFinhubData";
+import useSearchStockTwelve from "../../hooks/Stock/useTwelveData";
+import { FormInput } from "../../components/common";
 import { useNavigate } from "react-router-dom";
 
 ChartJS.register(
@@ -49,8 +49,6 @@ const SearchingPage = () => {
 
   const { data: LogoData, isLoading } = useSearchStockFinhub(searchInput); // 주식 로고 데이터
   const { data: StockData } = useSearchStockTwelve(searchInput); // 주식 가격 데이터
-
-  console.log("asdf", suggestions);
 
   useEffect(() => {
     if (searchInput.trim() !== "") {

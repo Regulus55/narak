@@ -19,7 +19,7 @@ const TopNavbar = () => {
       <div className="flex justify-between items-center max-w-7xl min-w-[300px] h-full pr-4 mx-auto text-white">
         <div id="left" className="flex items-center mx-2 space-x-4">
           <button
-            className="p-2 rounded-md active:scale-110"
+            className="p-2 rounded-md"
             onClick={() => setIsSideOpen((prev) => !prev)}
           >
             <HiOutlineMenu className="w-6 h-6" />

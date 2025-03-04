@@ -19,6 +19,8 @@ const useFinhubData = (searchInput: string) => {
     return {
       logo: logoResponse.data.logo,
       currentPrice: quoteResponse.data.c,
+      PriceChange: quoteResponse.data.d,
+      PriceChangePercentage: quoteResponse.data.dp,
     };
   };
 

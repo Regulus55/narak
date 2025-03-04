@@ -1,10 +1,11 @@
-import { createBrowserRouter, useParams } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import {
   NotFound,
-  QuotesList,
   Home,
-  Datas,
+  TotalAssets,
+  MyStocks,
+  MyBalance,
   Register,
   Login,
   Profile,
@@ -13,12 +14,15 @@ import {
   News,
   Ranking,
   Chat,
-  StockTest,
-  SearchingPage,
   StockDetail,
+  Alert,
 } from "./pages";
 import { PublicRoute, ProtectedRoute } from "./components/routes";
-import TwelveData from "./pages/Stock/TwelveData";
+import TwelveData from "./pages/TESTTEST/TwelveData";
+import QuotesList from "./pages/TESTTEST/QuotesList";
+import SearchingPage from "./pages/TESTTEST/SearchingPage";
+import Datas from "./pages/TESTTEST/Datas";
+import StockChart from "./pages/TESTTEST/StockTest";
 
 const router = createBrowserRouter([
   {
@@ -50,12 +54,28 @@ const router = createBrowserRouter([
             element: <Profile />,
           },
           {
-            path: "/profile/edit",
+            path: "/edit-profile",
             element: <EditProfile />,
+          },
+          {
+            path: "/total-assets",
+            element: <TotalAssets />,
+          },
+          {
+            path: "/my-stocks",
+            element: <MyStocks />,
+          },
+          {
+            path: "/my-balance",
+            element: <MyBalance />,
           },
           {
             path: "/chat",
             element: <Chat />,
+          },
+          {
+            path: "/alert",
+            element: <Alert />,
           },
         ],
       },
@@ -69,18 +89,6 @@ const router = createBrowserRouter([
       {
         path: "/stock/:id",
         element: <StockDetail />,
-      },
-      {
-        path: "/datas",
-        element: <Datas />,
-      },
-      {
-        path: "/searching/page",
-        element: <SearchingPage />,
-      },
-      {
-        path: "/stock/test",
-        element: <StockTest />,
       },
       {
         path: "/twelvedata",
@@ -98,9 +106,23 @@ const router = createBrowserRouter([
         path: "/ranking",
         element: <Ranking />,
       },
+
+      // 테스트 지워도됨
       {
         path: "/quotes",
         element: <QuotesList />,
+      },
+      {
+        path: "/searching/page",
+        element: <SearchingPage />,
+      },
+      {
+        path: "/datas",
+        element: <Datas />,
+      },
+      {
+        path: "/stock/test",
+        element: <StockChart />,
       },
     ],
   },
