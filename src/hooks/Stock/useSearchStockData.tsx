@@ -12,6 +12,8 @@ const useSearchStockData = (searchInput: string) => {
   return {
     logo: FinhubData?.logo, // 로고
     currentPrice: FinhubData?.currentPrice, // 현재가
+    PriceChange: FinhubData?.PriceChange, // 가격변동 (절대값) / 전일 종가 대비 가격 변화
+    PriceChangePercentage: FinhubData?.PriceChangePercentage, // 가격변동률 / 전일 종가 대비 변동 비율
     symbol: TwelveData?.symbol, // 주식 이름
     priceHistory: TwelveData?.priceHistory, // 이전 가격
     type: TwelveData?.type,

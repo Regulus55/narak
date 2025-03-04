@@ -19,8 +19,16 @@ const StockDetail: React.FC = () => {
 
   const { id } = useParams<{ id: string }>();
 
-  const { logo, symbol, type, priceHistory, currentPrice, status } =
-    useSearchStockData(id || "");
+  const {
+    logo,
+    symbol,
+    type,
+    priceHistory,
+    currentPrice,
+    PriceChange,
+    PriceChangePercentage,
+    status,
+  } = useSearchStockData(id || "");
 
   // 검색한 주식을 로컬스토리지로
   let visitedPages = new Set(
@@ -34,37 +42,46 @@ const StockDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100 p-4">
-      <div className="flex justify-between w-full">
+      {/* header */}
+      <div id="header" className="flex justify-between w-full">
         <div onClick={() => navigate(-1)}>
-          <IoMdArrowRoundBack className="w-8 h-8 hover:cursor-pointer" />
+          <IoMdArrowRoundBack className="w-7 h-7 hover:cursor-pointer" />
         </div>
         <div className="text-gray-500 border-2 border-gray-500 rounded-full my-auto p-1 hover:cursor-pointer relative">
           <ExchangeRateDropdown />
         </div>
       </div>
-      <h1 className="text-2xl font-bold">주식 상세 정보</h1>
-      <p className="mt-4">검색한 주식: {id}</p>
 
-      <img
-        src={
-          type !== "Common Stock" && status === "ok" ? "/images/etf.png" : logo
-        }
-        alt=""
-        className="w-12 h-12"
-      />
-      {symbol && (
-        <div className="text-xl font-semibold mt-4">
-          <p> {symbol}</p>
+      <div className="flex items-center justify-between w-full p-2">
+        <div className="flex items-center">
+          <img
+            src={
+              type !== "Common Stock" && status === "ok"
+                ? "/images/etf.png"
+                : logo
+            }
+            alt=""
+            className="w-10 h-10"
+          />
+          <h1 className="text-3xl font-semibold mx-2">{id}</h1>
         </div>
-      )}
 
-      {currentPrice && (
-        <div className="text-xl font-semibold text-green-600">
-          <p>현재가: ${parseFloat(currentPrice).toFixed(2)}</p>
+        <div>
+          <div className="text-2xl text-right font-semibold text-gray-500">
+            ${parseFloat(currentPrice).toFixed(2)}
+          </div>
+          <div
+            className={`flex space-x-1 text-sm font-semibold ${
+              PriceChange > 0 ? "text-red-600" : "text-blue-600"
+            }`}
+          >
+            <div>${parseFloat(PriceChange).toFixed(2)}</div>
+            <div>({parseFloat(PriceChangePercentage).toFixed(2)}%)</div>
+          </div>
         </div>
-      )}
+      </div>
 
-      <div className="w-full h-full max-w-2xl mt-6">
+      <div className="w-full h-[50vh] min-h-[300px] max-w-xl mt-6">
         <Line
           data={{
             labels: priceHistory?.map((data: StockData) => data.datetime),
@@ -109,6 +126,7 @@ const StockDetail: React.FC = () => {
           }}
           options={{
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
               title: { display: true, text: "Stock Prices" },
               tooltip: {

@@ -51,7 +51,8 @@ const ExchangeRateDropdown = () => {
           <div
             className={`absolute text-right pr-4 -left-36 top-6 w-40 h-auto rounded-b-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 p-2 rounded-md shadow-md`}
           >
-            1달러 = <span className="text-gray-800 font-bold">1,432</span> 원
+            1달러 ={" "}
+            <span className="text-lg text-gray-800 font-bold">1,432</span> 원
           </div>
         )}
       </div>
