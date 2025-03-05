@@ -61,6 +61,7 @@
 <br/>
 
 <img src="https://github.com/user-attachments/assets/e5e0220c-b8f0-44d2-b24a-2e4d511f6173" alt="Image" />
+<br/>
 모바일 메인페이지와 프로필 드롭다운
 
 <br/>
