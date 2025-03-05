@@ -2,7 +2,7 @@
 
 ---
 
-![메인화면.PNG](attachment:46fd04a0-769d-43bb-97ff-50d130388c38:메인화면.png)
+![Image](https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330)
 
 모의 주식 투자 사이트
 
@@ -43,24 +43,24 @@
 
 ## Preview
 
-![프로필드롭다운큰화면.PNG](attachment:a79dc0e8-0b97-4d49-9d93-c24bf6d97915:프로필드롭다운큰화면.png)
+![Image](https://github.com/user-attachments/assets/26a8507d-63ae-44c9-9502-eee1ea89ef56)
 
 데스크톱 메인페이지
 
-![메인화면.PNG](attachment:acefdce0-3e71-4751-b292-66ca8a5ac38d:메인화면.png)
+![Image](https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330)
 
-![프로필드롭다운.PNG](attachment:dd83473a-6f72-4570-b252-de4eeadd8295:프로필드롭다운.png)
+![Image](https://github.com/user-attachments/assets/a1610fdd-d5dd-427d-86a1-41820e83ce31)
 
-![주식상세페이지.PNG](attachment:aaebafbc-a698-4fba-860a-9096fa12ce8c:주식상세페이지.png)
+![Image](https://github.com/user-attachments/assets/69dc39fb-7658-4dfd-ac74-1d9b0427a3cc)
 
 주식 상세 페이지
 
-![환율.PNG](attachment:20847440-9673-4ac1-9b9a-d23488cf2f57:환율.png)
+![Image](https://github.com/user-attachments/assets/a490879e-3929-47fa-8d36-19591fa31c15)
 
 타 주식 사이트에서 해외 주식 거래 시, 현재 환율을 빠르게 볼 수 있는 방법이 없어 불편함을 느껴 주식 상세 페이지에서 바로 환율을 확인 할 수 있도록 만들었습니다. (현재 환율은 목데이터)
 
-![검색기록.PNG](attachment:7366b493-e301-46b6-b877-17c5b5ee0b6b:검색기록.png)
+![Image](https://github.com/user-attachments/assets/fa601692-5172-466b-8416-4961ab5d838a)
 
-![방문한페이지.PNG](attachment:74f6dd9a-7cb0-4b6c-b94f-9ee50f7acc60:방문한페이지.png)
+![Image](https://github.com/user-attachments/assets/d18c3c98-7a88-464d-92d2-65731648a6db)
 
 주식 검색 시 검색기록 란에 기록 남음. localStorage (visitedPages) 와 연동하여 추후 사이트 방문시에도 유지됨.
