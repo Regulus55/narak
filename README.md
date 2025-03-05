@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# Narak
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+![메인화면.PNG](attachment:46fd04a0-769d-43bb-97ff-50d130388c38:메인화면.png)
 
-In the project directory, you can run:
+모의 주식 투자 사이트
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Overview
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. 프로젝트 기획 이유 :
+    
+    주식투자를 좋아하는 친구들과 함께 모의 주식 투자를 하기 위함으로, 가상의 돈으로 주식을 원하는 만큼 매수하고, 주식투자에 자부심이 있는 친구들과 투자 실력을 겨루기 위함.
+    
+2. 프로젝트 기간 :
+    
+    2024.11.30 ~ 현재 진행중 (첫 init 후 진행하지 못하다가 2025.02 부터 다시 진행중)
+    
+3. 개발스택 :
+    - 프론트엔드: TypeScript, Tailwind CSS (react-query, context-api, react-hook-form 등)
+    - 백엔드(현재 인증기능만): Firebase
+    - 주식 데이터 API: Finhub, Twelve Data
+4. 특징 :
+    - 주로 스마트폰으로 접속할 상황이 많을것으로 예상하여 모바일화면을 기준으로 제작중.
+    - 주식의 현재 가격과 수량을 단순히 곱해 구매하여, 모의계좌에서 해당 금액만큼 빼는 단순한 방식으로 기획.
+    - Firebase 로 백엔드 구성 (추후 모의계좌, 채팅 기능 등 데이터베이스도 Firebase로 구성예정)
+    - 토스 증권, Stock’er (모의 주식 투자 어플) 등의 어플을 참고하여 제작중.
+5. 아쉬운 점
+    - 데이터 호출의 지연과 정확도의 문제, API 호출 한도 존재, 주봉 이상의 데이터 불러오기 불가 등 Finhub, Twelve Data 의 무료 API 사용 제한
+    - 실제 주식 시장에서 발생하는 수수료, 빠른 가격 변동, 매도/매수의 양에 따른 가격 차이 등을 반영하지 못한 점
+6. 추후 추가할 내용
+    - 주식의 현재가를 기준으로 모의계좌의 잔액 내에서 주식을 구입하는 기능
+    - 나의 총 자산, 잔고, 주식 등을 볼 수 있는 기능과 페이지
+    - 총 자산을 기준으로 한 랭킹, 유저 간 채팅 기능, 커뮤니티 등
+    - 세부적인 UI 개선
+7. 추후 개선할 내용
+    - 현재 영어로 된 주식 심볼로만 검색이 가능하나, 추후 한글로 검색해도 자동으로 맞는 주식 심볼을 검색해주는 기능을 추가할 예정
+    - 실제 주식 거래의 복잡한 요소들을 반영하여 더 현실감 있는 투자 환경이 되도록 개선할 예정
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Preview
 
-### `npm run build`
+![프로필드롭다운큰화면.PNG](attachment:a79dc0e8-0b97-4d49-9d93-c24bf6d97915:프로필드롭다운큰화면.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+데스크톱 메인페이지
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![메인화면.PNG](attachment:acefdce0-3e71-4751-b292-66ca8a5ac38d:메인화면.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![프로필드롭다운.PNG](attachment:dd83473a-6f72-4570-b252-de4eeadd8295:프로필드롭다운.png)
 
-### `npm run eject`
+![주식상세페이지.PNG](attachment:aaebafbc-a698-4fba-860a-9096fa12ce8c:주식상세페이지.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+주식 상세 페이지
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![환율.PNG](attachment:20847440-9673-4ac1-9b9a-d23488cf2f57:환율.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+타 주식 사이트에서 해외 주식 거래 시, 현재 환율을 빠르게 볼 수 있는 방법이 없어 불편함을 느껴 주식 상세 페이지에서 바로 환율을 확인 할 수 있도록 만들었습니다. (현재 환율은 목데이터)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![검색기록.PNG](attachment:7366b493-e301-46b6-b877-17c5b5ee0b6b:검색기록.png)
 
-## Learn More
+![방문한페이지.PNG](attachment:74f6dd9a-7cb0-4b6c-b94f-9ee50f7acc60:방문한페이지.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+주식 검색 시 검색기록 란에 기록 남음. localStorage (visitedPages) 와 연동하여 추후 사이트 방문시에도 유지됨.
