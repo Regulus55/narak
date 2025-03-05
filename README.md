@@ -14,7 +14,7 @@
 
 1. 프로젝트 기획 이유 :
     
-    주식투자를 좋아하는 친구들과 함께 모의 주식 투자를 하기 위함으로, 가상의 돈으로 주식을 원하는 만큼 매수하고, 주식투자에 자부심이 있는 친구들과 투자 실력을 겨루기 위함.
+    주식투자를 좋아하는 친구들과 함께 모의 주식 투자를 하기 위한 목적으로, 가상의 돈으로 주식을 원하는 만큼 매수하고, 주식투자에 자부심이 있는 친구들과 함께 자웅을 겨루기 위함.
    
     
 3. 프로젝트 기간 :
@@ -23,7 +23,7 @@
    
     
 5. 개발스택 :
-    - 프론트엔드: TypeScript, Tailwind CSS (react-query, context-api, react-hook-form 등)
+    - 프론트엔드: TypeScript, Tailwind CSS, React (React Query, Context API, React Hook Form 등)
     - 백엔드(현재 인증기능만): Firebase
     - 주식 데이터 API: Finhub, Twelve Data
       
