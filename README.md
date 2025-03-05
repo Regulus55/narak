@@ -59,7 +59,7 @@
 
 <p float="left">
   <img src="https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330" width="30%" />
-  <img src="https://github.com/user-attachments/assets/a1610fdd-d5dd-427d-86a1-41820e83ce31" width="45%" style="vertical-align: top;" />
+  <img src="https://github.com/user-attachments/assets/a1610fdd-d5dd-427d-86a1-41820e83ce31" width="30%" />
 </p>
 
 
