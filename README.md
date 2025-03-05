@@ -57,13 +57,10 @@
 
 데스크톱 메인페이지
 
-<p float="left">
-  <img src="https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330" alt="Image" />
-  <img src="https://github.com/user-attachments/assets/e5e0220c-b8f0-44d2-b24a-2e4d511f6173" alt="Image" />
-</p>
+<br/>
+<br/>
 
-
-
+<img src="https://github.com/user-attachments/assets/e5e0220c-b8f0-44d2-b24a-2e4d511f6173" alt="Image" />
 모바일 메인페이지와 프로필 드롭다운
 
 <br/>
