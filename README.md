@@ -78,7 +78,7 @@
 
 주식 상세 페이지
 
-타 주식 사이트에서 해외 주식 거래 시, 현재 환율을 빠르게 볼 수 있는 방법이 없어 불편함을 느껴 주식 상세 페이지에서 바로 환율을 확인 할 수 있도록 만들었습니다. (현재 환율은 목데이터)
+타 주식 사이트에서는 해외 주식 거래 시 현재 환율을 빠르게 확인할 수 있는 방법이 없어 불편함을 느끼고, 이를 개선하기 위해 주식 상세 페이지에서 바로 환율을 확인할 수 있도록 구현했습니다. (현재 환율은 목데이터입니다)
 
 <br/>
 <br/>
@@ -86,4 +86,4 @@
 <img src="https://github.com/user-attachments/assets/fa601692-5172-466b-8416-4961ab5d838a" alt="Image" />
 <img src="https://github.com/user-attachments/assets/69dc39fb-7658-4dfd-ac74-1d9b0427a3cc" alt="Image" />
 
-주식 검색 시 검색기록 란에 기록 남음. localStorage (visitedPages) 와 연동하여 추후 사이트 방문시에도 유지됨.
+주식 검색 시 검색 기록란에 기록이 남고, localStorage(visitedPages)와 연동되어 추후 사이트 방문 시에도 유지됩니다.
