@@ -58,8 +58,8 @@
 데스크톱 메인페이지
 
 <p float="left">
-  <img src="https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330" width="30%" />
-  <img src="https://github.com/user-attachments/assets/a1610fdd-d5dd-427d-86a1-41820e83ce31" width="30%" />
+  <img src="https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330" alt="Image" />
+  <img src="https://github.com/user-attachments/assets/e5e0220c-b8f0-44d2-b24a-2e4d511f6173" alt="Image" />
 </p>
 
 
@@ -70,7 +70,7 @@
 <br/>
 
 <img src="https://github.com/user-attachments/assets/d18c3c98-7a88-464d-92d2-65731648a6db" alt="Image" />
-<img src="https://github.com/user-attachments/assets/a490879e-3929-47fa-8d36-19591fa31c15" alt="Image" style="vertical-align: top;"/>
+<img src="https://github.com/user-attachments/assets/a490879e-3929-47fa-8d36-19591fa31c15" alt="Image" />
 
 <br/>
 <br/>
