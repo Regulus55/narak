@@ -41,13 +41,7 @@ const TopNavbar = () => {
         </div>
 
         <div id="right" className="flex items-center space-x-4 ">
-          {user ? (
-            <ProfileDropdown username={username} />
-          ) : (
-            <>
-              <GuestDropdown />
-            </>
-          )}
+          {user ? <ProfileDropdown username={username} /> : <GuestDropdown />}
         </div>
       </div>
     </nav>

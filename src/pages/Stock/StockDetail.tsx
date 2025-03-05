@@ -68,7 +68,7 @@ const StockDetail: React.FC = () => {
 
         <div>
           <div className="text-2xl text-right font-semibold text-gray-500">
-            ${parseFloat(currentPrice).toFixed(2)}
+            ${currentPrice ? parseFloat(currentPrice).toFixed(2) : "----"}
           </div>
           <div
             className={`flex space-x-1 text-sm font-semibold ${

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const useTwelveData = (searchInput: string) => {
   const getTwelveData = async (query: string) => {
-    const API_KEY = "08b39f29ee2b42f7a501fbf451b7a7d5";
+    const API_KEY = process.env.REACT_APP_TWELVE_DATA_API_KEY;
     const url = `https://api.twelvedata.com/time_series?symbol=${query}&interval=1day&apikey=${API_KEY}`;
     const response = await axios.get(url);
 
