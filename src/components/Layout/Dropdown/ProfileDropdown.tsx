@@ -86,7 +86,7 @@ const ProfileDropdown = ({ username }: DropdownProps) => {
               </div>
               <div
                 className="flex text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
-                onClick={() => navigate("/profile/edit")}
+                onClick={() => navigate("/edit-profile")}
               >
                 <LiaUserEditSolid className="h-4 w-4 mr-2" />
                 프로필 수정
