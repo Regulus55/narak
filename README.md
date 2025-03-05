@@ -86,4 +86,4 @@
 <img src="https://github.com/user-attachments/assets/fa601692-5172-466b-8416-4961ab5d838a" alt="Image" />
 <img src="https://github.com/user-attachments/assets/69dc39fb-7658-4dfd-ac74-1d9b0427a3cc" alt="Image" />
 
-주식 검색 시 검색 기록란에 기록이 남고, localStorage(visitedPages)와 연동되어 추후 사이트 방문 시에도 유지됩니다.
+메인페이지에서 주식 검색 시 검색 기록란에 주식심볼이 남고, localStorage(visitedPages)와 연동되어 추후 사이트 방문 시에도 유지됩니다.
