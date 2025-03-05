@@ -57,10 +57,11 @@
 
 데스크톱 메인페이지
 
-<p float="left">
-  <img src="https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330" width="40%" />
-  <img src="https://github.com/user-attachments/assets/a1610fdd-d5dd-427d-86a1-41820e83ce31" width="40%" />
-</p>
+<div style="display: flex; align-items: flex-start;">
+  <img src="https://github.com/user-attachments/assets/97164746-8320-438c-821f-f98f56b10330" width="45%" />
+  <img src="https://github.com/user-attachments/assets/a1610fdd-d5dd-427d-86a1-41820e83ce31" width="45%" />
+</div>
+
 
 모바일 메인페이지와 프로필 드롭다운
 
