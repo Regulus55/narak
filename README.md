@@ -62,18 +62,22 @@
   <img src="https://github.com/user-attachments/assets/a1610fdd-d5dd-427d-86a1-41820e83ce31" width="40%" />
 </p>
 
+모바일 메인페이지와 프로필 드롭다운
+
+<br/>
 <br/>
 
 <img src="https://github.com/user-attachments/assets/d18c3c98-7a88-464d-92d2-65731648a6db" alt="Image" />
-<img src="https://github.com/user-attachments/assets/a490879e-3929-47fa-8d36-19591fa31c15" alt="Image" />
+<img src="https://github.com/user-attachments/assets/a490879e-3929-47fa-8d36-19591fa31c15" alt="Image" style="vertical-align: top;"/>
 
 <br/>
-
+<br/>
 
 주식 상세 페이지
 
 타 주식 사이트에서 해외 주식 거래 시, 현재 환율을 빠르게 볼 수 있는 방법이 없어 불편함을 느껴 주식 상세 페이지에서 바로 환율을 확인 할 수 있도록 만들었습니다. (현재 환율은 목데이터)
 
+<br/>
 <br/>
 
 <img src="https://github.com/user-attachments/assets/fa601692-5172-466b-8416-4961ab5d838a" alt="Image" />
