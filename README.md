@@ -25,12 +25,12 @@
 
 ## 기술 스택
 
-| **Frontend** | React, TypeScript, JavaScript |
-| **Styling** | Tailwind CSS |
-| **State** | TanStack Query, Context API |
-| **Form** | React Hook Form |
-| **Auth & DB** | Firebase (Authentication, Firestore) |
-| **API** | [Finhub](https://finnhub.io/), [Twelve Data](https://twelvedata.com) |
+- | **Frontend** | React, TypeScript, JavaScript |
+- | **Styling** | Tailwind CSS |
+- | **State** | TanStack Query, Context API |
+- | **Form** | React Hook Form |
+- | **Auth & DB** | Firebase (Authentication, Firestore) |
+- | **API** | [Finhub](https://finnhub.io/), [Twelve Data](https://twelvedata.com) |
 
 
 
@@ -42,12 +42,14 @@
 - 심볼 자동 매칭 기능 (한글 입력 지원)
 - 실제 주식 시장 요소 반영 (수수료, 슬리피지 등)
 
+
 ##  한계 및 아쉬운 점
 
 - 무료 API의 데이터 호출 지연 및 정확도 문제
 - API 호출 횟수 제한
 - 주봉 이상의 데이터 미제공
 - 실제 주식 거래 환경과의 차이
+
 
 ## 실행 방법
 
