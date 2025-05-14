@@ -42,7 +42,6 @@
 - 유저의 자산, 잔고, 주식 보유 정보 페이지
 - 랭킹, 채팅, 커뮤니티 기능
 - 심볼 자동 매칭 기능 (한글 입력 지원)
-- 실제 주식 시장 요소 반영 (수수료, 슬리피지 등)
 
 
 ##  한계 및 아쉬운 점
@@ -57,6 +56,9 @@
 
 ```bash
 git clone https://github.com/your-username/narak.git
+
 cd narak
+
 npm install
+
 npm start
