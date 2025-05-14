@@ -33,6 +33,17 @@
 - | **API**       | [Finhub](https://finnhub.io/), [Twelve Data](https://twelvedata.com) |
 
 
+## 🛠 기술 스택
+
+| 구분          | 사용 기술 |
+|---------------|-----------|
+| **Frontend**  | React, TypeScript, JavaScript |
+| **Styling**   | Tailwind CSS |
+| **State**     | TanStack Query, Context API |
+| **Form**      | React Hook Form |
+| **Auth & DB** | Firebase (Authentication, Firestore) |
+| **API**       | [Finhub](https://finnhub.io/), [Twelve Data](https://twelvedata.com) |
+
 
 
 ## 향후 계획
