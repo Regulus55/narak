@@ -25,12 +25,14 @@
 
 ## 기술 스택
 
-| **Frontend**  | React, TypeScript, JavaScript |
-| **Styling**   | Tailwind CSS |
-| **State**     | TanStack Query, Context API |
-| **Form**      | React Hook Form |
-| **Auth & DB** | Firebase (Authentication, Firestore) |
-| **API**       | [Finhub](https://finnhub.io/), [Twelve Data](https://twelvedata.com) |
+| 항목           | 적용 스택 |
+|----------------|-----------|
+| **Frontend**   | React, TypeScript, JavaScript |
+| **Styling**    | Tailwind CSS |
+| **State**      | TanStack Query, Context API |
+| **Form**       | React Hook Form |
+| **Auth & DB**  | Firebase (Authentication, Firestore) |
+| **API**        | [Finhub](https://finnhub.io/), [Twelve Data](https://twelvedata.com) |
 
 
 
